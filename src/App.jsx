@@ -183,6 +183,26 @@ function App() {
               ))}
             </div>
           </div>
+          <div className="mt-12 flex flex-col items-center justify-center gap-3 text-center">
+            <p className="max-w-2xl text-sm leading-relaxed text-slate-600 sm:text-base">
+              Te armamos una landing a medida para tu negocio y objetivo de venta.
+            </p>
+            <a
+              href={createWhatsAppLink(siteConfig.whatsappNumber, createLandingInquiryMessage(siteConfig.companyName))}
+              target="_blank"
+              rel="noreferrer"
+              className="group relative inline-flex items-center justify-center overflow-hidden rounded-full border border-[var(--brand-dark-color)] bg-[linear-gradient(135deg,var(--brand-color),var(--brand-dark-color))] px-6 py-3.5 text-sm font-semibold text-white shadow-[0_14px_40px_rgba(15,118,110,0.32)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_22px_55px_rgba(15,118,110,0.42)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--brand-color)] focus-visible:ring-offset-2 focus-visible:ring-offset-white sm:px-7 sm:py-4 sm:text-base"
+              aria-label="Escribir por WhatsApp para pedir una landing personalizada"
+            >
+              <span className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_18%_22%,rgba(255,255,255,0.28),transparent_46%)] opacity-90 transition-opacity duration-300 group-hover:opacity-100" />
+              <span className="pointer-events-none absolute -left-14 top-0 h-full w-10 -skew-x-12 bg-white/35 blur-sm transition-all duration-700 group-hover:left-[120%]" />
+              <span className="relative inline-flex items-center gap-2.5">
+                Quiero mi landing personalizada
+                <ArrowRight size={17} className="transition-transform duration-300 group-hover:translate-x-1" />
+              </span>
+            </a>
+            <p className="text-xs font-medium text-slate-500">Te respondemos por WhatsApp y te orientamos en minutos.</p>
+          </div>
         </section>
 
         <section id="incluye" className="mx-auto w-full max-w-7xl px-4 py-6 sm:px-6 lg:px-8">

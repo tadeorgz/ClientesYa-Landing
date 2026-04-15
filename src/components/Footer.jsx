@@ -68,7 +68,7 @@ function Footer({ companyName, socialLinks = [], whatsappNumber, ctaHref }) {
             <div className="rounded-[28px] border border-white/10 bg-slate-950/40 p-6">
               <p className="text-xs font-semibold uppercase tracking-[0.22em] text-white/55">Lo que queda listo</p>
               <div className="mt-4 space-y-3">
-                {['Texto claro', 'Diseño mobile first', 'CTA a WhatsApp', 'Entrega simple'].map((item) => (
+                {['Texto claro', 'Diseño movil', 'Tráfico a WhatsApp', 'Entrega simple'].map((item) => (
                   <div key={item} className="rounded-2xl border border-white/10 bg-white/6 px-4 py-3 text-sm text-slate-200">
                     {item}
                   </div>
