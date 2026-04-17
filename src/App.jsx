@@ -1,5 +1,5 @@
 import { ArrowRight, ChevronRight, CircleCheckBig, Layers3, MessageSquareMore, PenTool, Smartphone, Sparkles } from 'lucide-react'
-import { useMemo, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import Footer from './components/Footer'
 import Hero from './components/Hero'
 import Navbar from './components/Navbar'
@@ -79,11 +79,25 @@ const processSteps = [
 function App() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [activeDemo, setActiveDemo] = useState(0)
+  const [visibleCount, setVisibleCount] = useState(() => (window.innerWidth >= 768 ? 3 : 1))
 
   const ctaHref = createWhatsAppLink(siteConfig.whatsappNumber, siteConfig.defaultWhatsAppMessage)
-  const mobileDemo = demos[activeDemo]
 
   const carouselDemos = useMemo(() => demos, [])
+  const visibleDemos = useMemo(
+    () =>
+      Array.from({ length: Math.min(visibleCount, carouselDemos.length) }, (_, offset) => carouselDemos[(activeDemo + offset) % carouselDemos.length]),
+    [activeDemo, carouselDemos, visibleCount],
+  )
+
+  useEffect(() => {
+    const handleResize = () => {
+      setVisibleCount(window.innerWidth >= 768 ? 3 : 1)
+    }
+
+    window.addEventListener('resize', handleResize)
+    return () => window.removeEventListener('resize', handleResize)
+  }, [])
 
   const goNext = () => setActiveDemo((current) => (current + 1) % carouselDemos.length)
 
@@ -128,61 +142,51 @@ function App() {
               Demos reales
             </p>
             <h2 className="mt-5 text-3xl font-black leading-tight text-slate-950 sm:text-4xl">
-              Tres landings, tres formas distintas de vender mejor.
+              Distintas landings, mismas formas de vender mejor.
             </h2>
             <p className="mt-4 max-w-xl text-sm leading-relaxed text-slate-600 sm:text-base">
               Estas demos muestran cómo adaptamos la estructura, los mensajes y el foco visual según el tipo de negocio.
             </p>
           </div>
 
-          <div className="mt-10 hidden gap-6 md:grid md:grid-cols-3">
-            {carouselDemos.map((demo) => {
-              const inquiryMessage = createProductInquiryMessage(siteConfig.companyName, demo.nombre)
-              return (
-                <ProductCard
-                  key={demo.id}
-                  demo={demo}
-                  whatsappHref={createWhatsAppLink(siteConfig.whatsappNumber, inquiryMessage)}
-                />
-              )
-            })}
+          <div className="mt-10 flex flex-col md:flex-row md:items-center md:gap-5">
+            <div className="grid flex-1 items-stretch gap-6 md:grid-cols-3">
+              {visibleDemos.map((demo, index) => {
+                const inquiryMessage = createProductInquiryMessage(siteConfig.companyName, demo.nombre)
+                return (
+                  <div key={`${demo.id}-${activeDemo}-${index}`} className="h-full animate-demo-carousel-in transition-all duration-300">
+                    <ProductCard
+                      demo={demo}
+                      featured={visibleCount === 1}
+                      whatsappHref={createWhatsAppLink(siteConfig.whatsappNumber, inquiryMessage)}
+                    />
+                  </div>
+                )
+              })}
+            </div>
+
+            <button
+              type="button"
+              onClick={goNext}
+              className="mt-4 inline-flex self-center rounded-full border border-slate-200 bg-white p-3 text-slate-700 shadow-lg shadow-black/10 transition-all duration-800 hover:-translate-y-0.5 hover:bg-slate-50 md:mt-0 md:shrink-0 md:self-center"
+              aria-label="Siguiente demo"
+            >
+              <ChevronRight size={18} />
+            </button>
           </div>
 
-          <div className="mt-10 md:hidden">
-            <div className="relative">
-              <div key={mobileDemo.id} className="transition-all duration-300">
-                <ProductCard
-                  demo={mobileDemo}
-                  featured
-                  whatsappHref={createWhatsAppLink(
-                    siteConfig.whatsappNumber,
-                    createProductInquiryMessage(siteConfig.companyName, mobileDemo.nombre),
-                  )}
-                />
-              </div>
-
+          <div className="mt-4 flex items-center justify-center gap-2">
+            {carouselDemos.map((demo, index) => (
               <button
+                key={demo.id}
                 type="button"
-                onClick={goNext}
-                className="absolute right-3 top-1/2 inline-flex -translate-y-1/2 items-center justify-center rounded-full border border-slate-200 bg-white p-3 text-slate-700 shadow-lg shadow-black/10 transition-all duration-300 hover:-translate-y-[52%] hover:bg-slate-50"
-                aria-label="Siguiente demo"
-              >
-                <ChevronRight size={20} />
-              </button>
-            </div>
-
-            <div className="mt-4 flex items-center justify-center gap-2">
-              {carouselDemos.map((demo, index) => (
-                <button
-                  key={demo.id}
-                  type="button"
-                  onClick={() => setActiveDemo(index)}
-                  className={`h-2 rounded-full transition-all duration-300 ${index === activeDemo ? 'w-8 bg-[var(--brand-color)]' : 'w-2 bg-slate-300'}`}
-                  aria-label={`Ir a la demo ${demo.nombre}`}
-                />
-              ))}
-            </div>
+                onClick={() => setActiveDemo(index)}
+                className={`h-2 rounded-full transition-all duration-300 ${index === activeDemo ? 'w-8 bg-[var(--brand-color)]' : 'w-2 bg-slate-300'}`}
+                aria-label={`Ir a la demo ${demo.nombre}`}
+              />
+            ))}
           </div>
+
           <div className="mt-12 flex flex-col items-center justify-center gap-3 text-center">
             <p className="max-w-2xl text-sm leading-relaxed text-slate-600 sm:text-base">
               Te armamos una landing a medida para tu negocio y objetivo de venta.
@@ -279,8 +283,10 @@ function App() {
         whatsappNumber={siteConfig.whatsappNumber}
         ctaHref={ctaHref}
       />
-    </div>
+    </div >
+
   )
+
 }
 
 export default App

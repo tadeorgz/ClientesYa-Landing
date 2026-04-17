@@ -11,30 +11,30 @@ function ProductCard({ demo, whatsappHref, featured = false }) {
           <span className="h-3 w-3 rounded-full bg-rose-400" />
           <span className="h-3 w-3 rounded-full bg-amber-400" />
           <span className="h-3 w-3 rounded-full bg-emerald-400" />
-          <div className="ml-2 h-7 flex-1 rounded-full bg-white px-4 py-1 text-[11px] font-medium text-slate-400 shadow-sm">
+          <div className="ml-2 h-7 flex-1 overflow-hidden rounded-full bg-white px-4 py-1 text-[11px] font-medium text-slate-400 shadow-sm text-ellipsis whitespace-nowrap">
             {demo.url.replace('https://', '')}
           </div>
         </div>
 
         <div
-          className="relative overflow-hidden rounded-[24px] p-5 text-white shadow-xl"
+          className="relative overflow-hidden rounded-[24px] p-5 text-white shadow-xl "
           style={{ backgroundImage: `linear-gradient(135deg, ${demo.accent}, #111827)` }}
         >
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(255,255,255,0.18),transparent_38%)]" />
-          <div className="relative flex items-start justify-between gap-4">
-            <div>
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(255,255,255,0.18),transparent_38%)] " />
+          <div className="relative flex min-h-[5.5rem] items-start justify-between gap-4">
+            <div className="min-w-0">
               <p className="text-xs font-semibold uppercase tracking-[0.22em] text-white/70">{demo.categoria}</p>
-              <h3 className="mt-2 text-2xl font-black leading-tight">{demo.nombre}</h3>
+              <h3 className="mt-2 min-h-[3.25rem] text-2xl font-black leading-tight">{demo.nombre}</h3>
             </div>
             <div className="rounded-2xl bg-white/12 p-3 text-2xl shadow-lg backdrop-blur">
               {demo.emoji}
             </div>
           </div>
 
-          <div className="relative mt-5 grid gap-3 sm:grid-cols-3">
+          <div className="relative mt-5 grid min-h-[5.5rem] gap-3 sm:grid-cols-3">
             {demo.stats.map((stat) => (
-              <div key={stat} className="rounded-2xl border border-white/12 bg-white/10 px-3 py-3 backdrop-blur">
-                <p className="text-[11px] font-medium text-white/75">{stat}</p>
+              <div key={stat} className="flex min-h-[4.4rem] items-center rounded-2xl border border-white/12 bg-white/10 px-3 py-3 backdrop-blur">
+                <p className="text-[11px] font-medium leading-tight text-white/75">{stat}</p>
               </div>
             ))}
           </div>
@@ -47,9 +47,9 @@ function ProductCard({ demo, whatsappHref, featured = false }) {
           Demo real
         </p>
 
-        <p className="text-sm leading-relaxed text-slate-600">{demo.descripcion}</p>
+        <p className="min-h-[3.5rem] text-sm leading-relaxed text-slate-600">{demo.descripcion}</p>
 
-        <div className="flex flex-wrap gap-2">
+        <div className="flex min-h-[2.75rem] flex-wrap gap-2">
           {demo.tags.map((tag) => (
             <span
               key={tag}

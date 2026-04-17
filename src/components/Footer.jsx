@@ -47,10 +47,10 @@ function Footer({ companyName, socialLinks = [], whatsappNumber, ctaHref }) {
                 Contacto rápido
               </p>
               <h2 className="mt-5 max-w-2xl text-3xl font-black leading-tight text-white sm:text-4xl">
-                Si querés una landing que ordene tu negocio y venda más, escribinos.
+                Si querés una web que ordene tu negocio y venda más, escribinos.
               </h2>
               <p className="mt-4 max-w-2xl text-sm leading-relaxed text-slate-300">
-                Armamos landings claras, con foco en conversión, navegación simple y un camino directo al WhatsApp de tu negocio.
+                Armamos webs claras, con foco en conversión, navegación simple y un camino directo al WhatsApp de tu negocio.
               </p>
 
               <div className="mt-7 flex flex-col gap-3 sm:flex-row">
