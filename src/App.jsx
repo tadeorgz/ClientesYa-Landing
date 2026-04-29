@@ -1,6 +1,7 @@
 import { ArrowRight, ChevronRight, CircleCheckBig, Layers3, MessageSquareMore, PenTool, Smartphone, Sparkles } from 'lucide-react'
 import { useEffect, useMemo, useState } from 'react'
 import Footer from './components/Footer'
+import AboutUs from './components/AboutUs'
 import Hero from './components/Hero'
 import Navbar from './components/Navbar'
 import ProductCard from './components/ProductCard'
@@ -35,7 +36,7 @@ const heroHighlights = [
 ]
 
 const heroStats = [
-  { value: '3', label: 'demos reales' },
+  { value: '4', label: 'demos reales' },
   { value: '48h', label: 'arranque rápido' },
   { value: 'WA', label: 'contacto directo' },
 ]
@@ -134,6 +135,7 @@ function App() {
           highlights={heroHighlights}
           stats={heroStats}
         />
+
 
         <section id="demos" className="mx-auto w-full max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
           <div className="max-w-2xl">
@@ -275,6 +277,9 @@ function App() {
             </div>
           </div>
         </section>
+
+        <AboutUs />
+
       </main>
 
       <Footer

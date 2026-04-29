@@ -15,6 +15,34 @@ export const products = [
     },
     {
         id: 2,
+        nombre: 'RentaCar Demo',
+        categoria: 'Automotriz',
+        imagen:
+            'https://images.unsplash.com/photo-1555066931-436bec036c1b?auto=format&fit=crop&w=1200&q=80',
+        descripcion: 'Enfocada en mostrar vehículos disponibles, con un diseño moderno y una experiencia de usuario fluida.',
+        url: 'https://renta-car-landing.vercel.app/',
+        accent: '#7c3aed',
+        gradient: 'from-violet-500 via-fuchsia-400 to-pink-300',
+        emoji: '🚗',
+        tags: ['Marcas', 'Vehículos', 'Renta'],
+        stats: ['Diseño moderno', 'Mas productos', 'Fácil de usar'],
+    },
+    {
+        id: 5,
+        nombre: 'Academia Demo',
+        categoria: 'Educación',
+        imagen:
+            'https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&w=1200&q=80',
+        descripcion: 'Cursos claros y visibles para todos los niveles.',
+        url: 'https://vercel.com/tadeorgz/academia-landing',
+        accent: '#9dbadd', // #0e0a40
+        gradient: 'from-blue-500 via-teal-400 to-green-200',
+        emoji: '📚',
+        tags: ['Cursos', 'Educación', 'Aprendizaje'],
+        stats: ['Consulta guiada', 'Experiencia interactiva', 'Diseño educativo'],
+    },
+    {
+        id: 3,
         nombre: 'Ferretería Demo',
         categoria: 'Comercio',
         imagen:
@@ -28,7 +56,7 @@ export const products = [
         stats: ['Orden visual', 'Productos rápidos', 'Consulta directa'],
     },
     {
-        id: 3,
+        id: 4,
         nombre: 'Psicología Demo',
         categoria: 'Salud',
         imagen:
@@ -41,20 +69,7 @@ export const products = [
         tags: ['Quien eres', 'Servicios', 'Organización'],
         stats: ['Consulta simple', 'Experiencia cálida', 'Más interacción'],
     },
-    {
-        id: 4,
-        nombre: 'RentaCar Demo',
-        categoria: 'Automotriz',
-        imagen:
-            'https://images.unsplash.com/photo-1555066931-436bec036c1b?auto=format&fit=crop&w=1200&q=80',
-        descripcion: 'Enfocada en mostrar vehículos disponibles, con un diseño moderno y una experiencia de usuario fluida.',
-        url: 'https://renta-car-landing.vercel.app/',
-        accent: '#7c3aed',
-        gradient: 'from-violet-500 via-fuchsia-400 to-pink-300',
-        emoji: '🚗',
-        tags: ['Marcas', 'Vehículos', 'Renta'],
-        stats: ['Diseño moderno', 'Mas productos', 'Fácil de usar'],
-    }
+
 ]
 
 export const demos = products

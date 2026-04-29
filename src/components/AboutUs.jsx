@@ -6,10 +6,10 @@ import { siteConfig } from '../config/siteConfig'
 import { createWhatsAppLink } from '../utils/whatsapp'
 
 const stats = [
-  { value: '+1.000', label: 'Pacientes atendidos', icon: Users },
-  { value: '+6', label: 'Años de experiencia', icon: Clock },
-  { value: '98%', label: 'Satisfacción de pacientes', icon: Heart },
-  { value: '<4h', label: 'Respuesta por WhatsApp', icon: MessageCircle },
+  { value: '1 objetivo', label: 'Generarte consultas reales', icon: MessageCircle },
+  { value: '24-48h', label: 'Web lista', icon: Clock },
+  { value: '100%', label: 'Diseño enfocado en conversión', icon: Users },
+  { value: '0 código innecesario', label: 'Simple y efectivo', icon: Heart },
 ]
 
 function AboutUs() {
@@ -52,21 +52,19 @@ function AboutUs() {
 
       <div className="relative mx-auto max-w-7xl">
         {/* Section header */}
-        <div
-          className="mb-16 max-w-2xl"
-        >
+        <div className="mb-16 max-w-2xl">
           <p className="mb-4 inline-flex items-center gap-2 rounded-full border border-[var(--brand-color)]/30 bg-[var(--brand-color)]/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.18em] text-[var(--brand-color)]">
             <Award size={12} />
-            Nuestra historia
+            Sobre mi
           </p>
           <h2 className="text-3xl font-black leading-tight text-white sm:text-5xl">
-            Cuidamos tu sonrisa con{' '}
+            Soy Tadeo y estoy detrás de{' '}
             <span className="bg-gradient-to-r from-[var(--brand-color)] to-emerald-400 bg-clip-text text-transparent">
-              odontología de confianza
+              ClientesYa
             </span>
           </h2>
           <p className="mt-5 text-lg leading-relaxed text-slate-400">
-            Somos una clínica dental enfocada en prevención, estética y rehabilitación oral. Combinamos tecnología moderna, diagnóstico preciso y trato humano para que te sientas acompañado en cada etapa de tu tratamiento.
+            Tengo 21 años, soy una persona común, cercana y con muchas ganas de crecer. Me gusta escuchar música, aprender cosas nuevas y seguir mejorando todos los días para llevar mi emprendimiento a lo más alto.
           </p>
         </div>
 
@@ -80,18 +78,23 @@ function AboutUs() {
             {[
               {
                 icon: Heart,
-                title: 'Atención centrada en el paciente',
-                text: 'Nuestra clínica nació con una misión clara: ofrecer odontología de alta calidad con cercanía y transparencia. Escuchamos tus necesidades y diseñamos tratamientos pensados para tu bienestar a largo plazo.',
+                title: 'Una persona como vos, con ganas de crecer',
+                text: 'No vengo a hablarte desde un lugar lejano o corporativo. Soy alguien que está construyendo su camino, aprendiendo en el proceso y apostando todo para hacer crecer ClientesYa con trabajo real y trato cercano.',
               },
               {
                 icon: Users,
-                title: 'Equipo profesional multidisciplinario',
-                text: 'Contamos con especialistas en odontología general, estética, endodoncia, ortodoncia e implantología. Trabajamos de forma coordinada para lograr resultados funcionales y naturales.',
+                title: 'Estudiante avanzado de Ingeniería en Informática',
+                text: 'Hoy estoy en la etapa final de la carrera y eso me dio una base sólida para trabajar en desarrollo web con una mirada práctica: que la web no solo se vea bien, sino que ayude a generar consultas reales por WhatsApp.',
               },
               {
                 icon: Clock,
-                title: 'Tecnología y tiempos eficientes',
-                text: 'Utilizamos protocolos modernos para ofrecer diagnósticos precisos y tratamientos seguros en menos sesiones, con seguimiento continuo y respuesta rápida por WhatsApp para resolver tus dudas.',
+                title: 'Proyectos reales y experiencia aplicada',
+                text: 'Trabajé en proyectos académicos y personales, y también colaboré con el Hotel Puesta del Sol en Punta del Este, realizando mejoras web y optimizaciones para darle una presencia más clara, rápida y profesional.',
+              },
+              {
+                icon: MessageCircle,
+                title: 'Soluciones a medida, no plantillas genéricas',
+                text: 'No uso WordPress ni Shopify para resolver todo igual. Desarrollo webs a medida con tecnologías modernas como React, lo que me permite adaptar cada proyecto a lo que realmente necesita el cliente, con buen rendimiento y foco en resultados.',
               },
             ].map(({ icon, title, text }) => {
               const SectionIcon = icon
@@ -114,7 +117,7 @@ function AboutUs() {
             >
               <WhatsAppButton
                 href={ctaHref}
-                label="Agenda tu evaluación por WhatsApp"
+                label="Hablemos por WhatsApp"
                 size="lg"
               />
             </div>
@@ -149,7 +152,7 @@ function AboutUs() {
             <div
               className="mt-6 rounded-2xl border border-white/8 bg-white/5 p-6 backdrop-blur-sm"
             >
-              <div className="flex gap-1 mb-3">
+              <div className="mb-3 flex gap-1">
                 {Array.from({ length: 5 }).map((_, i) => (
                   <svg key={i} className="h-4 w-4 fill-amber-400 text-amber-400" viewBox="0 0 20 20">
                     <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
@@ -157,9 +160,9 @@ function AboutUs() {
                 ))}
               </div>
               <p className="text-sm leading-relaxed text-slate-300 italic">
-                "Excelente atención y dedicación por parte de Victoria. Una excelente profesional que busca soluciones de acuerdo a tus necesidades. Gracias!!"
+                "Quiero que cada web que hago sume de verdad: que genere confianza, se vea profesional y ayude a que más personas te escriban."
               </p>
-              <p className="mt-3 text-xs font-semibold text-[var(--brand-color)]">— Victoria G., paciente</p>
+              <p className="mt-3 text-xs font-semibold text-[var(--brand-color)]">— Tadeo, ClientesYa</p>
             </div>
           </div>
         </div>
