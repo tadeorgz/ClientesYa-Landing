@@ -5,6 +5,7 @@ import AboutUs from './components/AboutUs'
 import Hero from './components/Hero'
 import Navbar from './components/Navbar'
 import ProductCard from './components/ProductCard'
+import ProductsCarousel from './components/ProductsCarousel'
 import WhatsAppButton from './components/WhatsAppButton'
 import { siteConfig } from './config/siteConfig'
 import { demos } from './data/products'
@@ -137,79 +138,13 @@ function App() {
         />
 
 
-        <section id="demos" className="mx-auto w-full max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
-          <div className="max-w-2xl">
-            <p className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white/80 px-4 py-1.5 text-[11px] font-semibold uppercase tracking-[0.22em] text-slate-600 shadow-sm backdrop-blur">
-              <Sparkles size={11} className="text-[var(--brand-color)]" />
-              Demos reales
-            </p>
-            <h2 className="mt-5 text-3xl font-black leading-tight text-slate-950 sm:text-4xl">
-              Distintas landings, mismas formas de vender mejor.
-            </h2>
-            <p className="mt-4 max-w-xl text-sm leading-relaxed text-slate-600 sm:text-base">
-              Estas demos muestran cómo adaptamos la estructura, los mensajes y el foco visual según el tipo de negocio.
-            </p>
-          </div>
-
-          <div className="mt-10 flex flex-col md:flex-row md:items-center md:gap-5">
-            <div className="grid flex-1 items-stretch gap-6 md:grid-cols-3">
-              {visibleDemos.map((demo, index) => {
-                const inquiryMessage = createProductInquiryMessage(siteConfig.companyName, demo.nombre)
-                return (
-                  <div key={`${demo.id}-${activeDemo}-${index}`} className="h-full animate-demo-carousel-in transition-all duration-300">
-                    <ProductCard
-                      demo={demo}
-                      featured={visibleCount === 1}
-                      whatsappHref={createWhatsAppLink(siteConfig.whatsappNumber, inquiryMessage)}
-                    />
-                  </div>
-                )
-              })}
-            </div>
-
-            <button
-              type="button"
-              onClick={goNext}
-              className="mt-4 inline-flex self-center rounded-full border border-slate-200 bg-white p-3 text-slate-700 shadow-lg shadow-black/10 transition-all duration-800 hover:-translate-y-0.5 hover:bg-slate-50 md:mt-0 md:shrink-0 md:self-center"
-              aria-label="Siguiente demo"
-            >
-              <ChevronRight size={18} />
-            </button>
-          </div>
-
-          <div className="mt-4 flex items-center justify-center gap-2">
-            {carouselDemos.map((demo, index) => (
-              <button
-                key={demo.id}
-                type="button"
-                onClick={() => setActiveDemo(index)}
-                className={`h-2 rounded-full transition-all duration-300 ${index === activeDemo ? 'w-8 bg-[var(--brand-color)]' : 'w-2 bg-slate-300'}`}
-                aria-label={`Ir a la demo ${demo.nombre}`}
-              />
-            ))}
-          </div>
-
-          <div className="mt-12 flex flex-col items-center justify-center gap-3 text-center">
-            <p className="max-w-2xl text-sm leading-relaxed text-slate-600 sm:text-base">
-              Te armamos una landing a medida para tu negocio y objetivo de venta.
-            </p>
-            <a
-              href={createWhatsAppLink(siteConfig.whatsappNumber, createLandingInquiryMessage(siteConfig.companyName))}
-              target="_blank"
-              rel="noreferrer"
-              className="group relative inline-flex items-center justify-center overflow-hidden rounded-full border border-[var(--brand-dark-color)] bg-[linear-gradient(135deg,var(--brand-color),var(--brand-dark-color))] px-6 py-3.5 text-sm font-semibold text-white shadow-[0_14px_40px_rgba(15,118,110,0.32)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_22px_55px_rgba(15,118,110,0.42)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--brand-color)] focus-visible:ring-offset-2 focus-visible:ring-offset-white sm:px-7 sm:py-4 sm:text-base"
-              aria-label="Escribir por WhatsApp para pedir una landing personalizada"
-            >
-              <span className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_18%_22%,rgba(255,255,255,0.28),transparent_46%)] opacity-90 transition-opacity duration-300 group-hover:opacity-100" />
-              <span className="pointer-events-none absolute -left-14 top-0 h-full w-10 -skew-x-12 bg-white/35 blur-sm transition-all duration-700 group-hover:left-[120%]" />
-              <span className="relative inline-flex items-center gap-2.5">
-                Quiero mi landing personalizada
-                <ArrowRight size={17} className="transition-transform duration-300 group-hover:translate-x-1" />
-              </span>
-            </a>
-            <p className="text-xs font-medium text-slate-500">Te respondemos por WhatsApp y te orientamos en minutos.</p>
-          </div>
-        </section>
+        <ProductsCarousel
+          demos={demos}
+          companyName={siteConfig.companyName}
+          whatsappNumber={siteConfig.whatsappNumber}
+          viewAllHref="#demos"
+          viewAllLabel="Ver las demos"
+        />
 
         <section id="incluye" className="mx-auto w-full max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
           <div className="grid gap-5 md:grid-cols-3">
