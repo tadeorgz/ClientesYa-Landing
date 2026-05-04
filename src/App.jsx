@@ -37,7 +37,7 @@ const heroHighlights = [
 ]
 
 const heroStats = [
-  { value: '4', label: 'demos reales' },
+  { value: '+10', label: 'demos' },
   { value: '48h', label: 'arranque rápido' },
   { value: 'WA', label: 'contacto directo' },
 ]
