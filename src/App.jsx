@@ -10,7 +10,7 @@ import RealProjectCard from './components/RealProjectCard'
 import WhatsAppButton from './components/WhatsAppButton'
 import { siteConfig } from './config/siteConfig'
 import { demos } from './data/products'
-import { createLandingInquiryMessage, createProductInquiryMessage, createWhatsAppLink } from './utils/whatsapp'
+import { createLandingInquiryMessage, createWhatsAppLink } from './utils/whatsapp'
 
 const navLinks = [
   { label: 'Inicio', href: '#inicio' },
@@ -138,6 +138,10 @@ function App() {
           stats={heroStats}
         />
 
+        <RealProjectCard
+          whatsappHref={createWhatsAppLink(siteConfig.whatsappNumber, createLandingInquiryMessage(siteConfig.companyName))}
+          projectUrl="https://landing-zonamuebles.com"
+        />
 
         <ProductsCarousel
           demos={demos}
@@ -147,7 +151,6 @@ function App() {
           viewAllLabel="Ver las demos"
         />
 
-        <RealProjectCard whatsappHref={createWhatsAppLink(siteConfig.whatsappNumber, createLandingInquiryMessage(siteConfig.companyName))} />
 
         <section id="incluye" className="mx-auto w-full max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
           <div className="grid gap-5 md:grid-cols-3">
