@@ -156,7 +156,7 @@ const RealProjectCard = ({ whatsappHref, projectUrl = 'https://zonamueblesuy.com
 
             {/* Content Grid - Adjusted for iPhone prominence */}
             <div className="relative p-8 sm:p-10 lg:p-12">
-              <div className="grid gap-8 lg:grid-cols-[1.3fr_0.7fr]">
+              <div className="grid gap-8 lg:grid-cols-[1.3fr_0.7fr] items-center">
                 {/* Left: iPhone Mockup */}
                 <motion.a
                   href={projectUrl}
@@ -166,7 +166,7 @@ const RealProjectCard = ({ whatsappHref, projectUrl = 'https://zonamueblesuy.com
                   animate={inView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.95 }}
                   transition={{ duration: 0.6, ease: 'easeOut' }}
                   whileHover={{ y: -12 }}
-                  className="group/phone relative -my-8 cursor-pointer"
+                  className="group/phone relative cursor-pointer"
                 >
                   {/* iPhone Frame */}
                   <div className="relative mx-auto max-w-sm">
@@ -181,12 +181,12 @@ const RealProjectCard = ({ whatsappHref, projectUrl = 'https://zonamueblesuy.com
                         </div>
 
                         {/* Screen content with scroll effect */}
-                        <div className="relative h-96 bg-gradient-to-b from-slate-100 to-white pt-8 overflow-hidden group-hover/phone:overflow-y-auto">
+                        <div className="relative h-[550px] bg-gradient-to-b from-slate-100 to-white pt-8 overflow-hidden group-hover/phone:overflow-y-auto">
                           {/* Scroll container */}
                           <motion.div
                             initial={{ y: 0 }}
-                            whileHover={{ y: -80 }}
-                            transition={{ duration: 2, ease: 'easeInOut' }}
+                            whileHover={{ y: "-70%" }}
+                            transition={{ duration: 8, ease: "linear" }}
                             className="w-full h-auto"
                           >
                             <img
