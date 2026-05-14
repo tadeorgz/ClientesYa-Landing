@@ -3,7 +3,7 @@ import { motion, useScroll, useSpring, useTransform } from 'framer-motion'
 import { useInView } from 'react-intersection-observer'
 import WhatsAppButton from './WhatsAppButton'
 
-const RealProjectCard = ({ whatsappHref }) => {
+const RealProjectCard = ({ whatsappHref, projectUrl = 'https://landing-zonamuebles.com' }) => {
   const containerRef = useRef(null)
   const { ref: inViewRef, inView } = useInView({ threshold: 0.2, triggerOnce: false })
   const { scrollYProgress } = useScroll({
@@ -154,69 +154,123 @@ const RealProjectCard = ({ whatsappHref }) => {
               }}
             />
 
-            {/* Content Grid */}
+            {/* Content Grid - Adjusted for iPhone prominence */}
             <div className="relative p-8 sm:p-10 lg:p-12">
-              <div className="grid gap-8 lg:grid-cols-[1.2fr_0.8fr]">
-                {/* Left: Preview & Description */}
-                <div className="space-y-6">
-                  <motion.div
-                    initial={{ opacity: 0, scale: 0.95 }}
-                    animate={inView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.95 }}
-                    transition={{ duration: 0.6, ease: 'easeOut' }}
-                    className="rounded-3xl border border-slate-200/80 bg-gradient-to-br from-slate-50 to-slate-100/50 p-6 overflow-hidden group/preview"
-                  >
-                    <div className="space-y-3 mb-4">
-                      <div className="flex gap-2">
-                        <div className="h-3 w-3 rounded-full bg-rose-400" />
-                        <div className="h-3 w-3 rounded-full bg-amber-400" />
-                        <div className="h-3 w-3 rounded-full bg-emerald-400" />
+              <div className="grid gap-8 lg:grid-cols-[1.3fr_0.7fr]">
+                {/* Left: iPhone Mockup */}
+                <motion.a
+                  href={projectUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  initial={{ opacity: 0, scale: 0.95 }}
+                  animate={inView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.95 }}
+                  transition={{ duration: 0.6, ease: 'easeOut' }}
+                  whileHover={{ y: -12 }}
+                  className="group/phone relative -my-8 cursor-pointer"
+                >
+                  {/* iPhone Frame */}
+                  <div className="relative mx-auto max-w-sm">
+                    {/* Outer casing */}
+                    <div className="rounded-[3rem] border-8 border-slate-900/80 bg-slate-950 shadow-2xl overflow-hidden">
+                      {/* Screen bezel */}
+                      <div className="rounded-[2.5rem] overflow-hidden bg-black relative">
+                        {/* Notch/Dynamic Island */}
+                        <div className="absolute top-0 left-1/2 -translate-x-1/2 z-20 w-40 h-7 bg-black rounded-b-3xl flex items-center justify-center gap-1">
+                          <div className="w-1 h-1 rounded-full bg-slate-600" />
+                          <div className="w-1 h-1 rounded-full bg-slate-600" />
+                        </div>
+
+                        {/* Screen content with scroll effect */}
+                        <div className="relative h-96 bg-gradient-to-b from-slate-100 to-white pt-8 overflow-hidden group-hover/phone:overflow-y-auto">
+                          {/* Scroll container */}
+                          <motion.div
+                            initial={{ y: 0 }}
+                            whileHover={{ y: -80 }}
+                            transition={{ duration: 2, ease: 'easeInOut' }}
+                            className="space-y-4 px-4 pb-4"
+                          >
+                            {/* Screen mockup content */}
+                            <div className="space-y-2">
+                              <div className="h-6 w-3/4 bg-slate-300 rounded-lg" />
+                              <div className="h-4 w-full bg-slate-200 rounded-lg" />
+                            </div>
+
+                            <div className="space-y-2">
+                              <div className="h-24 w-full bg-gradient-to-r from-blue-300 to-blue-200 rounded-lg" />
+                            </div>
+
+                            <div className="space-y-2">
+                              <div className="h-4 w-2/3 bg-slate-300 rounded-lg" />
+                              <div className="h-3 w-full bg-slate-200 rounded-lg" />
+                              <div className="h-3 w-5/6 bg-slate-200 rounded-lg" />
+                            </div>
+
+                            <div className="space-y-2">
+                              <div className="h-6 w-1/2 bg-slate-300 rounded-lg" />
+                              <div className="h-12 w-full bg-emerald-300 rounded-lg" />
+                            </div>
+
+                            <div className="space-y-2">
+                              <div className="h-4 w-3/4 bg-slate-300 rounded-lg" />
+                              <div className="h-3 w-full bg-slate-200 rounded-lg" />
+                              <div className="h-3 w-5/6 bg-slate-200 rounded-lg" />
+                            </div>
+
+                            <div className="h-12 bg-gradient-to-r from-teal-400 to-teal-300 rounded-lg" />
+                          </motion.div>
+                        </div>
+
+                        {/* Home indicator */}
+                        <div className="absolute bottom-2 left-1/2 -translate-x-1/2 w-32 h-1 bg-black rounded-full" />
                       </div>
-                      <div className="h-8 w-full max-w-xs rounded-full bg-slate-200/60 group-hover/preview:bg-slate-300/60 transition-colors" />
                     </div>
 
-                    <div className="space-y-3">
-                      <motion.div
-                        animate={inView ? { x: [0, 4, 0] } : {}}
-                        transition={{ repeat: Infinity, duration: 2, delay: 0 }}
-                        className="h-4 w-3/4 rounded-lg bg-slate-300/70"
-                      />
-                      <motion.div
-                        animate={inView ? { x: [0, 4, 0] } : {}}
-                        transition={{ repeat: Infinity, duration: 2, delay: 0.1 }}
-                        className="h-4 w-5/6 rounded-lg bg-slate-300/50"
-                      />
-                      <motion.div
-                        animate={inView ? { x: [0, 4, 0] } : {}}
-                        transition={{ repeat: Infinity, duration: 2, delay: 0.2 }}
-                        className="h-4 w-4/5 rounded-lg bg-slate-300/60"
-                      />
-                    </div>
+                    {/* Glass reflection effect */}
+                    <div className="absolute inset-0 rounded-[3rem] bg-gradient-to-br from-white/20 via-transparent to-black/10 pointer-events-none" />
+
+                    {/* Glow on hover */}
+                    <div className="absolute -inset-4 bg-gradient-to-r from-blue-500/20 to-purple-500/20 rounded-[3.5rem] opacity-0 group-hover/phone:opacity-100 blur-xl transition-opacity duration-500 -z-10" />
+                  </div>
+
+                  {/* External Link Indicator */}
+                  <motion.div
+                    initial={{ opacity: 0 }}
+                    whileHover={{ opacity: 1 }}
+                    className="absolute -top-3 -right-3 bg-white border border-slate-200 rounded-full p-2 shadow-lg opacity-0 group-hover/phone:opacity-100 transition-opacity"
+                  >
+                    <svg className="w-4 h-4 text-slate-950" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                    </svg>
                   </motion.div>
+                </motion.a>
 
+                {/* Right: Bento Box Grid + Description */}
+                <div className="space-y-6">
+                  {/* Description Section */}
                   <motion.div
                     initial={{ opacity: 0, y: 10 }}
                     animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 10 }}
                     transition={{ delay: 0.3, duration: 0.5 }}
-                    className="space-y-3"
+                    className="space-y-3 rounded-2xl border border-slate-200/50 bg-slate-50/50 p-4"
                   >
-                    <h3 className="text-lg font-bold text-slate-950">Estructura de ZonaMuebles</h3>
-                    <p className="text-sm text-slate-600 leading-relaxed">
-                      Organizamos todos los elementos en secciones claras para que el cliente navigate sin fricción. Cada sección cumple un propósito específico en el customer journey.
+                    <h3 className="text-base font-bold text-slate-950">Estructura de ZonaMuebles</h3>
+                    <p className="text-xs text-slate-600 leading-relaxed">
+                      Organizamos cada sección para que los clientes naveguen sin fricción. Desde el primero impacto hasta la conversión.
                     </p>
                   </motion.div>
-                </div>
 
-                {/* Right: Bento Box Grid */}
-                <motion.div
-                  initial={{ opacity: 0 }}
-                  animate={inView ? { opacity: 1 } : { opacity: 0 }}
-                  transition={{ delay: 0.2, duration: 0.6 }}
-                  className="grid grid-cols-2 gap-3 lg:grid-cols-2 lg:gap-3 auto-rows-max"
-                >
-                  {sectionItems.map((item, index) => (
-                    <SectionBox key={item.label} item={item} index={index} />
-                  ))}
-                </motion.div>
+                  {/* Bento Box Grid */}
+                  <motion.div
+                    initial={{ opacity: 0 }}
+                    animate={inView ? { opacity: 1 } : { opacity: 0 }}
+                    transition={{ delay: 0.2, duration: 0.6 }}
+                    className="grid grid-cols-2 gap-2"
+                  >
+                    {sectionItems.map((item, index) => (
+                      <SectionBox key={item.label} item={item} index={index} />
+                    ))}
+                  </motion.div>
+                </div>
               </div>
 
               {/* Bottom CTA Section */}
@@ -224,7 +278,7 @@ const RealProjectCard = ({ whatsappHref }) => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
                 transition={{ delay: 0.5, duration: 0.5 }}
-                className="mt-10 rounded-3xl border border-slate-200/50 bg-gradient-to-r from-slate-50 to-white p-6 sm:p-8"
+                className="mt-12 rounded-3xl border border-slate-200/50 bg-gradient-to-r from-slate-50 to-white p-6 sm:p-8"
               >
                 <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
                   <div>
@@ -239,9 +293,22 @@ const RealProjectCard = ({ whatsappHref }) => {
                   <motion.div
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.98 }}
-                    className="flex gap-3"
+                    className="flex flex-col sm:flex-row gap-3"
                   >
-                    <WhatsAppButton href={whatsappHref} label="Ver mi landing" size="lg" />
+                    <WhatsAppButton href={whatsappHref} label="Quiero mi landing" size="lg" />
+                    <motion.a
+                      href={projectUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      whileHover={{ scale: 1.05 }}
+                      whileTap={{ scale: 0.98 }}
+                      className="inline-flex items-center justify-center gap-2 rounded-full border border-slate-300 bg-white/50 px-6 py-4 text-sm font-semibold text-slate-700 backdrop-blur transition-all duration-300 hover:border-slate-400 hover:bg-white/80"
+                    >
+                      Ver sitio en vivo
+                      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                      </svg>
+                    </motion.a>
                   </motion.div>
                 </div>
               </motion.div>
