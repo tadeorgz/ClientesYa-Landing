@@ -113,7 +113,7 @@ function App() {
         '--bg-soft-color': siteConfig.colors.bgSoft,
         '--text-color': siteConfig.colors.text,
       }}
-      className="min-h-screen text-[var(--text-color)] antialiased"
+      className="w-full overflow-x-hidden text-[var(--text-color)] antialiased"
     >
       <Navbar
         companyName={siteConfig.companyName}
@@ -140,7 +140,7 @@ function App() {
 
         <RealProjectCard
           whatsappHref={createWhatsAppLink(siteConfig.whatsappNumber, createLandingInquiryMessage(siteConfig.companyName))}
-          projectUrl="https://landing-zonamuebles.com"
+          projectUrl="https://zonamueblesuy.com"
         />
 
         <ProductsCarousel

@@ -62,7 +62,6 @@ const RealProjectCard = ({ whatsappHref, projectUrl = 'https://zonamueblesuy.com
         initial={{ opacity: 0, y: 20 }}
         animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
         transition={{ delay: index * 0.1, duration: 0.5, ease: 'easeOut' }}
-
         className="group relative h-24 sm:h-28 overflow-hidden rounded-lg sm:rounded-2xl border border-white/15 bg-gradient-to-br backdrop-blur-md cursor-pointer"
         style={{
           backgroundImage: `linear-gradient(135deg, var(--gradient))`,
@@ -72,7 +71,7 @@ const RealProjectCard = ({ whatsappHref, projectUrl = 'https://zonamueblesuy.com
         }}
       >
         <div
-          className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+          className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 "
           style={{
             background: 'radial-gradient(circle at var(--mouse-x) var(--mouse-y), rgba(255,255,255,0.1), transparent)',
           }}
@@ -151,10 +150,11 @@ const RealProjectCard = ({ whatsappHref, projectUrl = 'https://zonamueblesuy.com
               }}
             />
 
-            {/* Content Grid - Adjusted for iPhone prominence */}
-            <div className="relative p-4 sm:p-6 lg:p-12">
-              <div className="grid gap-6 lg:gap-8 lg:grid-cols-[1.3fr_0.7fr] items-center">
-                {/* Left: iPhone Mockup */}
+            {/* Content Grid */}
+            <div className="relative p-5 sm:p-8 lg:p-12">
+              <div className="grid gap-8 lg:gap-12 lg:grid-cols-[1.1fr_0.9fr] items-center">
+
+                {/* Left: iPhone Mockup - FIXED PROPORTIONS */}
                 <motion.a
                   href={projectUrl}
                   target="_blank"
@@ -162,57 +162,60 @@ const RealProjectCard = ({ whatsappHref, projectUrl = 'https://zonamueblesuy.com
                   initial={{ opacity: 0, scale: 0.95 }}
                   animate={inView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.95 }}
                   transition={{ duration: 0.6, ease: 'easeOut' }}
-                  whileHover={{ y: -12 }}
-                  className="group/phone relative cursor-pointer flex flex-col items-center"
+                  whileHover={{ y: -8 }}
+                  className="group/phone relative cursor-pointer flex flex-col items-center justify-center w-full mt-4 lg:mt-0"
                 >
-                  {/* iPhone Frame */}
-                  <div className="relative mx-auto w-full max-w-xs sm:max-w-sm">
+                  {/* iPhone Frame - Explicit strict widths to force aspect ratio */}
+                  <div className="relative w-[240px] sm:w-[280px] lg:w-[300px]">
+
                     {/* Outer casing */}
-                    <div className="rounded-[2rem] sm:rounded-[3rem] border-6 sm:border-8 border-slate-900/80 bg-slate-950 shadow-2xl overflow-hidden">
+                    <div className="rounded-[2.5rem] sm:rounded-[3rem] border-[6px] sm:border-[8px] border-slate-900 bg-slate-950 shadow-2xl overflow-hidden relative">
+
                       {/* Screen bezel */}
-                      <div className="rounded-[1.75rem] sm:rounded-[2.5rem] overflow-hidden bg-black relative">
+                      <div className="rounded-[2rem] sm:rounded-[2.5rem] overflow-hidden bg-black relative">
+
                         {/* Notch/Dynamic Island */}
-                        <div className="absolute top-0 left-1/2 -translate-x-1/2 z-20 w-32 sm:w-40 h-6 sm:h-7 bg-black rounded-b-3xl flex items-center justify-center gap-1">
-                          <div className="w-0.5 h-0.5 sm:w-1 sm:h-1 rounded-full bg-slate-600" />
-                          <div className="w-0.5 h-0.5 sm:w-1 sm:h-1 rounded-full bg-slate-600" />
+                        <div className="absolute top-0 left-1/2 -translate-x-1/2 z-20 w-24 sm:w-32 h-5 sm:h-6 bg-black rounded-b-2xl sm:rounded-b-3xl flex items-center justify-center gap-1.5">
+                          <div className="w-1 h-1 rounded-full bg-slate-800/80" />
+                          <div className="w-1 h-1 rounded-full bg-slate-700/80" />
                         </div>
 
-                        {/* Screen content with scroll effect */}
-                        <div className="relative h-80 sm:h-[550px] bg-gradient-to-b from-slate-100 to-white pt-6 sm:pt-8 overflow-hidden ">
+                        {/* Screen content with scroll effect - FIXED HEIGHTS */}
+                        <div className="relative h-[460px] sm:h-[550px] lg:h-[600px] bg-gradient-to-b from-slate-100 to-white overflow-hidden">
                           {/* Scroll container */}
                           <motion.div
                             initial={{ y: 0 }}
-                            whileHover={{ y: "-70%" }}
-                            transition={{ duration: 8, ease: "linear" }}
+                            whileHover={{ y: "-75%" }}
+                            transition={{ duration: 10, ease: "linear" }}
                             className="w-full h-auto"
                           >
                             <img
                               src="/preview-zonamuebles.jpg"
                               alt="Preview de ZonaMuebles"
-                              className="w-full h-auto object-cover"
+                              className="w-full h-auto object-cover pointer-events-none"
                             />
                           </motion.div>
                         </div>
 
                         {/* Home indicator */}
-                        <div className="absolute bottom-1.5 sm:bottom-2 left-1/2 -translate-x-1/2 w-24 sm:w-32 h-0.5 sm:h-1 bg-black rounded-full" />
+                        <div className="absolute bottom-1.5 sm:bottom-2 left-1/2 -translate-x-1/2 w-20 sm:w-24 h-1 bg-black/80 rounded-full" />
                       </div>
                     </div>
 
                     {/* Glass reflection effect */}
-                    <div className="absolute inset-0 rounded-[2rem] sm:rounded-[3rem] bg-gradient-to-br from-white/20 via-transparent to-black/10 pointer-events-none" />
+                    <div className="absolute inset-0 rounded-[2.5rem] sm:rounded-[3rem] bg-gradient-to-br from-white/10 via-transparent to-black/20 pointer-events-none" />
 
                     {/* Glow on hover */}
-                    <div className="absolute -inset-4 bg-gradient-to-r from-blue-500/20 to-purple-500/20 rounded-[3.5rem] opacity-0 group-hover/phone:opacity-100 blur-xl transition-opacity duration-500 -z-10" />
+                    <div className="absolute -inset-4 bg-gradient-to-r from-blue-500/20 to-teal-500/20 rounded-[3.5rem] opacity-0 group-hover/phone:opacity-100 blur-xl transition-opacity duration-500 -z-10" />
 
                     {/* Click hint text */}
                     <motion.p
                       initial={{ opacity: 0, y: 10 }}
                       animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 10 }}
                       transition={{ delay: 0.7, duration: 0.5 }}
-                      className="text-center mt-3 sm:mt-4 text-xs text-slate-500 font-medium tracking-wide"
+                      className="text-center mt-5 text-xs text-slate-500 font-medium tracking-wide"
                     >
-                      ↻ Click para ver la demo completa
+                      ↻ Clickeá para ver la demo completa
                     </motion.p>
                   </div>
 
@@ -220,26 +223,26 @@ const RealProjectCard = ({ whatsappHref, projectUrl = 'https://zonamueblesuy.com
                   <motion.div
                     initial={{ opacity: 0 }}
                     whileHover={{ opacity: 1 }}
-                    className="absolute -top-3 -right-3 bg-white border border-slate-200 rounded-full p-2 shadow-lg opacity-0 group-hover/phone:opacity-100 transition-opacity"
+                    className="absolute top-0 right-0 sm:-right-4 lg:-right-6 bg-white border border-slate-200 rounded-full p-2.5 shadow-xl opacity-0 group-hover/phone:opacity-100 transition-opacity z-30"
                   >
                     <svg className="w-4 h-4 text-slate-950" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
                     </svg>
                   </motion.div>
                 </motion.a>
 
                 {/* Right: Bento Box Grid + Description */}
-                <div className="space-y-4 lg:space-y-6">
+                <div className="space-y-5 lg:space-y-6">
                   {/* Description Section */}
                   <motion.div
                     initial={{ opacity: 0, y: 10 }}
                     animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 10 }}
                     transition={{ delay: 0.3, duration: 0.5 }}
-                    className="space-y-2 sm:space-y-3 rounded-xl sm:rounded-2xl border border-slate-200/30 bg-slate-50/30 p-3 sm:p-4"
+                    className="space-y-2 sm:space-y-3 rounded-2xl border border-slate-200/40 bg-slate-50/50 p-4 sm:p-5"
                   >
                     <h3 className="text-sm sm:text-base font-bold text-slate-950">Estructura de ZonaMuebles</h3>
-                    <p className="text-xs sm:text-xs text-slate-600 leading-relaxed">
-                      Organizamos cada sección para que los clientes naveguen sin fricción.
+                    <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
+                      Organizamos cada sección para que los clientes naveguen sin fricción y lleguen directo al mensaje.
                     </p>
                   </motion.div>
 
@@ -248,7 +251,7 @@ const RealProjectCard = ({ whatsappHref, projectUrl = 'https://zonamueblesuy.com
                     initial={{ opacity: 0 }}
                     animate={inView ? { opacity: 1 } : { opacity: 0 }}
                     transition={{ delay: 0.2, duration: 0.6 }}
-                    className="grid grid-cols-2 gap-1.5 sm:gap-2"
+                    className="grid grid-cols-2 gap-2 sm:gap-3"
                   >
                     {sectionItems.map((item, index) => (
                       <SectionBox key={item.label} item={item} index={index} />
@@ -262,37 +265,35 @@ const RealProjectCard = ({ whatsappHref, projectUrl = 'https://zonamueblesuy.com
                 initial={{ opacity: 0, y: 20 }}
                 animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
                 transition={{ delay: 0.5, duration: 0.5 }}
-                className="mt-8 sm:mt-12 rounded-2xl sm:rounded-3xl border border-slate-200/50 bg-gradient-to-r from-slate-50 to-white p-4 sm:p-6 lg:p-8"
+                className="mt-10 sm:mt-12 rounded-3xl border border-slate-200/60 bg-gradient-to-r from-slate-50 to-white p-5 sm:p-8 shadow-sm"
               >
-                <div className="flex flex-col gap-4 sm:gap-6 lg:items-center lg:justify-between lg:flex-row">
-                  <div className="order-1 lg:order-1">
-                    <p className="text-xs sm:text-sm font-semibold text-slate-600 uppercase tracking-wide">
-                      ¿Te late este enfoque?
+                <div className="flex flex-col gap-5 lg:items-center lg:justify-between lg:flex-row">
+                  <div>
+                    <p className="text-xs sm:text-sm font-semibold text-[var(--brand-color)] uppercase tracking-wide">
+                      ¿Te copa este enfoque?
                     </p>
-                    <h3 className="mt-1 sm:mt-2 text-lg sm:text-xl font-bold text-slate-950">
+                    <h3 className="mt-1.5 text-lg sm:text-xl font-bold text-slate-950">
                       Hagamos lo mismo para tu negocio
                     </h3>
                   </div>
 
                   <motion.div
-                    whileHover={{ scale: 1.05 }}
+                    whileHover={{ scale: 1.02 }}
                     whileTap={{ scale: 0.98 }}
-                    className="order-2 lg:order-2 flex flex-col sm:flex-row gap-2 sm:gap-3 w-full sm:w-auto lg:w-auto"
+                    className="flex flex-col sm:flex-row gap-3 w-full sm:w-auto"
                   >
-                    <WhatsAppButton href={whatsappHref} label="Quiero mi landing" size="lg" className="flex-1 sm:flex-none" />
-                    <motion.a
+                    <WhatsAppButton href={whatsappHref} label="Quiero mi landing" size="lg" className="w-full sm:w-auto" />
+                    <a
                       href={projectUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      whileHover={{ scale: 1.05 }}
-                      whileTap={{ scale: 0.98 }}
-                      className="flex-1 sm:flex-none inline-flex items-center justify-center gap-2 rounded-full border border-slate-300 bg-white/50 px-4 sm:px-6 py-3 sm:py-4 text-xs sm:text-sm font-semibold text-slate-700 backdrop-blur transition-all duration-300 hover:border-slate-400 hover:bg-white/80"
+                      className="inline-flex w-full sm:w-auto items-center justify-center gap-2 rounded-full border border-slate-300 bg-white px-6 py-3.5 text-sm font-semibold text-slate-700 shadow-sm transition-all duration-300 hover:border-slate-400 hover:bg-slate-50 focus:ring-2 focus:ring-slate-200"
                     >
                       Ver sitio en vivo
-                      <svg className="w-3.5 h-3.5 sm:w-4 sm:h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
                       </svg>
-                    </motion.a>
+                    </a>
                   </motion.div>
                 </div>
               </motion.div>

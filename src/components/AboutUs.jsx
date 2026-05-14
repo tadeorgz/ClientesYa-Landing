@@ -33,7 +33,7 @@ function AboutUs() {
 
   const ctaHref = createWhatsAppLink(
     siteConfig.whatsappNumber,
-    '¡Hola! Quiero agendar una evaluación dental y conocer sus tratamientos.',
+    'Hola Tadeo, me gustaría saber más sobre cómo ClientesYa puede ayudar a mi negocio.',
   )
 
   return (
@@ -160,9 +160,9 @@ function AboutUs() {
                 ))}
               </div>
               <p className="text-sm leading-relaxed text-slate-300 italic">
-                "Quiero que cada web que hago sume de verdad: que genere confianza, se vea profesional y ayude a que más personas te escriban."
+                "Muy linda la web, la verdad contentazo con el resultado!"
               </p>
-              <p className="mt-3 text-xs font-semibold text-[var(--brand-color)]">— Tadeo, ClientesYa</p>
+              <p className="mt-3 text-xs font-semibold text-[var(--brand-color)]">— Ignacio, ZonaMuebles</p>
             </div>
           </div>
         </div>
