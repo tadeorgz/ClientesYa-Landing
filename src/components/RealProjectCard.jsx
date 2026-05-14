@@ -3,7 +3,7 @@ import { motion, useScroll, useSpring, useTransform } from 'framer-motion'
 import { useInView } from 'react-intersection-observer'
 import WhatsAppButton from './WhatsAppButton'
 
-const RealProjectCard = ({ whatsappHref, projectUrl = 'https://landing-zonamuebles.com' }) => {
+const RealProjectCard = ({ whatsappHref, projectUrl = 'https://zonamueblesuy.com' }) => {
   const containerRef = useRef(null)
   const { ref: inViewRef, inView } = useInView({ threshold: 0.2, triggerOnce: false })
   const { scrollYProgress } = useScroll({
@@ -187,36 +187,13 @@ const RealProjectCard = ({ whatsappHref, projectUrl = 'https://landing-zonamuebl
                             initial={{ y: 0 }}
                             whileHover={{ y: -80 }}
                             transition={{ duration: 2, ease: 'easeInOut' }}
-                            className="space-y-4 px-4 pb-4"
+                            className="w-full h-auto"
                           >
-                            {/* Screen mockup content */}
-                            <div className="space-y-2">
-                              <div className="h-6 w-3/4 bg-slate-300 rounded-lg" />
-                              <div className="h-4 w-full bg-slate-200 rounded-lg" />
-                            </div>
-
-                            <div className="space-y-2">
-                              <div className="h-24 w-full bg-gradient-to-r from-blue-300 to-blue-200 rounded-lg" />
-                            </div>
-
-                            <div className="space-y-2">
-                              <div className="h-4 w-2/3 bg-slate-300 rounded-lg" />
-                              <div className="h-3 w-full bg-slate-200 rounded-lg" />
-                              <div className="h-3 w-5/6 bg-slate-200 rounded-lg" />
-                            </div>
-
-                            <div className="space-y-2">
-                              <div className="h-6 w-1/2 bg-slate-300 rounded-lg" />
-                              <div className="h-12 w-full bg-emerald-300 rounded-lg" />
-                            </div>
-
-                            <div className="space-y-2">
-                              <div className="h-4 w-3/4 bg-slate-300 rounded-lg" />
-                              <div className="h-3 w-full bg-slate-200 rounded-lg" />
-                              <div className="h-3 w-5/6 bg-slate-200 rounded-lg" />
-                            </div>
-
-                            <div className="h-12 bg-gradient-to-r from-teal-400 to-teal-300 rounded-lg" />
+                            <img
+                              src="/preview-zonamuebles.jpg"
+                              alt="Preview de ZonaMuebles"
+                              className="w-full h-auto object-cover"
+                            />
                           </motion.div>
                         </div>
 
