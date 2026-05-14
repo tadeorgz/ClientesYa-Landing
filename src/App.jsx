@@ -6,6 +6,7 @@ import Hero from './components/Hero'
 import Navbar from './components/Navbar'
 import ProductCard from './components/ProductCard'
 import ProductsCarousel from './components/ProductsCarousel'
+import RealProjectCard from './components/RealProjectCard'
 import WhatsAppButton from './components/WhatsAppButton'
 import { siteConfig } from './config/siteConfig'
 import { demos } from './data/products'
@@ -145,6 +146,8 @@ function App() {
           viewAllHref="#demos"
           viewAllLabel="Ver las demos"
         />
+
+        <RealProjectCard whatsappHref={createWhatsAppLink(siteConfig.whatsappNumber, createLandingInquiryMessage(siteConfig.companyName))} />
 
         <section id="incluye" className="mx-auto w-full max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
           <div className="grid gap-5 md:grid-cols-3">
