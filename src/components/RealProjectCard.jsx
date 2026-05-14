@@ -62,11 +62,8 @@ const RealProjectCard = ({ whatsappHref, projectUrl = 'https://zonamueblesuy.com
         initial={{ opacity: 0, y: 20 }}
         animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
         transition={{ delay: index * 0.1, duration: 0.5, ease: 'easeOut' }}
-        whileHover={{
-          y: -8,
-          transition: { duration: 0.2 },
-        }}
-        className="group relative h-28 overflow-hidden rounded-2xl border border-white/20 bg-gradient-to-br backdrop-blur-md cursor-pointer"
+
+        className="group relative h-24 sm:h-28 overflow-hidden rounded-lg sm:rounded-2xl border border-white/15 bg-gradient-to-br backdrop-blur-md cursor-pointer"
         style={{
           backgroundImage: `linear-gradient(135deg, var(--gradient))`,
           '--gradient': item.color,
@@ -81,12 +78,12 @@ const RealProjectCard = ({ whatsappHref, projectUrl = 'https://zonamueblesuy.com
           }}
         />
 
-        <div className="relative h-full w-full flex flex-col items-center justify-center p-4 text-center">
+        <div className="relative h-full w-full flex flex-col items-center justify-center p-2 sm:p-4 text-center">
           <motion.div
             initial={{ scale: 0.8 }}
             animate={inView ? { scale: 1 } : { scale: 0.8 }}
             transition={{ delay: index * 0.15 + 0.2, duration: 0.4 }}
-            className="text-4xl mb-2"
+            className="text-3xl sm:text-4xl mb-1 sm:mb-2"
           >
             {item.icon}
           </motion.div>
@@ -95,7 +92,7 @@ const RealProjectCard = ({ whatsappHref, projectUrl = 'https://zonamueblesuy.com
             initial={{ opacity: 0 }}
             animate={inView ? { opacity: 1 } : { opacity: 0 }}
             transition={{ delay: index * 0.15 + 0.3, duration: 0.4 }}
-            className="text-sm font-bold text-slate-900 group-hover:text-slate-950 transition-colors"
+            className="text-xs sm:text-sm font-bold text-slate-900 group-hover:text-slate-950 transition-colors"
           >
             {item.label}
           </motion.h3>
@@ -155,8 +152,8 @@ const RealProjectCard = ({ whatsappHref, projectUrl = 'https://zonamueblesuy.com
             />
 
             {/* Content Grid - Adjusted for iPhone prominence */}
-            <div className="relative p-8 sm:p-10 lg:p-12">
-              <div className="grid gap-8 lg:grid-cols-[1.3fr_0.7fr] items-center">
+            <div className="relative p-4 sm:p-6 lg:p-12">
+              <div className="grid gap-6 lg:gap-8 lg:grid-cols-[1.3fr_0.7fr] items-center">
                 {/* Left: iPhone Mockup */}
                 <motion.a
                   href={projectUrl}
@@ -166,22 +163,22 @@ const RealProjectCard = ({ whatsappHref, projectUrl = 'https://zonamueblesuy.com
                   animate={inView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.95 }}
                   transition={{ duration: 0.6, ease: 'easeOut' }}
                   whileHover={{ y: -12 }}
-                  className="group/phone relative cursor-pointer"
+                  className="group/phone relative cursor-pointer flex flex-col items-center"
                 >
                   {/* iPhone Frame */}
-                  <div className="relative mx-auto max-w-sm">
+                  <div className="relative mx-auto w-full max-w-xs sm:max-w-sm">
                     {/* Outer casing */}
-                    <div className="rounded-[3rem] border-8 border-slate-900/80 bg-slate-950 shadow-2xl overflow-hidden">
+                    <div className="rounded-[2rem] sm:rounded-[3rem] border-6 sm:border-8 border-slate-900/80 bg-slate-950 shadow-2xl overflow-hidden">
                       {/* Screen bezel */}
-                      <div className="rounded-[2.5rem] overflow-hidden bg-black relative">
+                      <div className="rounded-[1.75rem] sm:rounded-[2.5rem] overflow-hidden bg-black relative">
                         {/* Notch/Dynamic Island */}
-                        <div className="absolute top-0 left-1/2 -translate-x-1/2 z-20 w-40 h-7 bg-black rounded-b-3xl flex items-center justify-center gap-1">
-                          <div className="w-1 h-1 rounded-full bg-slate-600" />
-                          <div className="w-1 h-1 rounded-full bg-slate-600" />
+                        <div className="absolute top-0 left-1/2 -translate-x-1/2 z-20 w-32 sm:w-40 h-6 sm:h-7 bg-black rounded-b-3xl flex items-center justify-center gap-1">
+                          <div className="w-0.5 h-0.5 sm:w-1 sm:h-1 rounded-full bg-slate-600" />
+                          <div className="w-0.5 h-0.5 sm:w-1 sm:h-1 rounded-full bg-slate-600" />
                         </div>
 
                         {/* Screen content with scroll effect */}
-                        <div className="relative h-[550px] bg-gradient-to-b from-slate-100 to-white pt-8 overflow-hidden group-hover/phone:overflow-y-auto">
+                        <div className="relative h-80 sm:h-[550px] bg-gradient-to-b from-slate-100 to-white pt-6 sm:pt-8 overflow-hidden ">
                           {/* Scroll container */}
                           <motion.div
                             initial={{ y: 0 }}
@@ -198,15 +195,25 @@ const RealProjectCard = ({ whatsappHref, projectUrl = 'https://zonamueblesuy.com
                         </div>
 
                         {/* Home indicator */}
-                        <div className="absolute bottom-2 left-1/2 -translate-x-1/2 w-32 h-1 bg-black rounded-full" />
+                        <div className="absolute bottom-1.5 sm:bottom-2 left-1/2 -translate-x-1/2 w-24 sm:w-32 h-0.5 sm:h-1 bg-black rounded-full" />
                       </div>
                     </div>
 
                     {/* Glass reflection effect */}
-                    <div className="absolute inset-0 rounded-[3rem] bg-gradient-to-br from-white/20 via-transparent to-black/10 pointer-events-none" />
+                    <div className="absolute inset-0 rounded-[2rem] sm:rounded-[3rem] bg-gradient-to-br from-white/20 via-transparent to-black/10 pointer-events-none" />
 
                     {/* Glow on hover */}
                     <div className="absolute -inset-4 bg-gradient-to-r from-blue-500/20 to-purple-500/20 rounded-[3.5rem] opacity-0 group-hover/phone:opacity-100 blur-xl transition-opacity duration-500 -z-10" />
+
+                    {/* Click hint text */}
+                    <motion.p
+                      initial={{ opacity: 0, y: 10 }}
+                      animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 10 }}
+                      transition={{ delay: 0.7, duration: 0.5 }}
+                      className="text-center mt-3 sm:mt-4 text-xs text-slate-500 font-medium tracking-wide"
+                    >
+                      ↻ Click para ver la demo completa
+                    </motion.p>
                   </div>
 
                   {/* External Link Indicator */}
@@ -222,17 +229,17 @@ const RealProjectCard = ({ whatsappHref, projectUrl = 'https://zonamueblesuy.com
                 </motion.a>
 
                 {/* Right: Bento Box Grid + Description */}
-                <div className="space-y-6">
+                <div className="space-y-4 lg:space-y-6">
                   {/* Description Section */}
                   <motion.div
                     initial={{ opacity: 0, y: 10 }}
                     animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 10 }}
                     transition={{ delay: 0.3, duration: 0.5 }}
-                    className="space-y-3 rounded-2xl border border-slate-200/50 bg-slate-50/50 p-4"
+                    className="space-y-2 sm:space-y-3 rounded-xl sm:rounded-2xl border border-slate-200/30 bg-slate-50/30 p-3 sm:p-4"
                   >
-                    <h3 className="text-base font-bold text-slate-950">Estructura de ZonaMuebles</h3>
-                    <p className="text-xs text-slate-600 leading-relaxed">
-                      Organizamos cada sección para que los clientes naveguen sin fricción. Desde el primero impacto hasta la conversión.
+                    <h3 className="text-sm sm:text-base font-bold text-slate-950">Estructura de ZonaMuebles</h3>
+                    <p className="text-xs sm:text-xs text-slate-600 leading-relaxed">
+                      Organizamos cada sección para que los clientes naveguen sin fricción.
                     </p>
                   </motion.div>
 
@@ -241,7 +248,7 @@ const RealProjectCard = ({ whatsappHref, projectUrl = 'https://zonamueblesuy.com
                     initial={{ opacity: 0 }}
                     animate={inView ? { opacity: 1 } : { opacity: 0 }}
                     transition={{ delay: 0.2, duration: 0.6 }}
-                    className="grid grid-cols-2 gap-2"
+                    className="grid grid-cols-2 gap-1.5 sm:gap-2"
                   >
                     {sectionItems.map((item, index) => (
                       <SectionBox key={item.label} item={item} index={index} />
@@ -255,14 +262,14 @@ const RealProjectCard = ({ whatsappHref, projectUrl = 'https://zonamueblesuy.com
                 initial={{ opacity: 0, y: 20 }}
                 animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
                 transition={{ delay: 0.5, duration: 0.5 }}
-                className="mt-12 rounded-3xl border border-slate-200/50 bg-gradient-to-r from-slate-50 to-white p-6 sm:p-8"
+                className="mt-8 sm:mt-12 rounded-2xl sm:rounded-3xl border border-slate-200/50 bg-gradient-to-r from-slate-50 to-white p-4 sm:p-6 lg:p-8"
               >
-                <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
-                  <div>
-                    <p className="text-sm font-semibold text-slate-600 uppercase tracking-wide">
+                <div className="flex flex-col gap-4 sm:gap-6 lg:items-center lg:justify-between lg:flex-row">
+                  <div className="order-1 lg:order-1">
+                    <p className="text-xs sm:text-sm font-semibold text-slate-600 uppercase tracking-wide">
                       ¿Te late este enfoque?
                     </p>
-                    <h3 className="mt-1 text-xl font-bold text-slate-950">
+                    <h3 className="mt-1 sm:mt-2 text-lg sm:text-xl font-bold text-slate-950">
                       Hagamos lo mismo para tu negocio
                     </h3>
                   </div>
@@ -270,19 +277,19 @@ const RealProjectCard = ({ whatsappHref, projectUrl = 'https://zonamueblesuy.com
                   <motion.div
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.98 }}
-                    className="flex flex-col sm:flex-row gap-3"
+                    className="order-2 lg:order-2 flex flex-col sm:flex-row gap-2 sm:gap-3 w-full sm:w-auto lg:w-auto"
                   >
-                    <WhatsAppButton href={whatsappHref} label="Quiero mi landing" size="lg" />
+                    <WhatsAppButton href={whatsappHref} label="Quiero mi landing" size="lg" className="flex-1 sm:flex-none" />
                     <motion.a
                       href={projectUrl}
                       target="_blank"
                       rel="noopener noreferrer"
                       whileHover={{ scale: 1.05 }}
                       whileTap={{ scale: 0.98 }}
-                      className="inline-flex items-center justify-center gap-2 rounded-full border border-slate-300 bg-white/50 px-6 py-4 text-sm font-semibold text-slate-700 backdrop-blur transition-all duration-300 hover:border-slate-400 hover:bg-white/80"
+                      className="flex-1 sm:flex-none inline-flex items-center justify-center gap-2 rounded-full border border-slate-300 bg-white/50 px-4 sm:px-6 py-3 sm:py-4 text-xs sm:text-sm font-semibold text-slate-700 backdrop-blur transition-all duration-300 hover:border-slate-400 hover:bg-white/80"
                     >
                       Ver sitio en vivo
-                      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <svg className="w-3.5 h-3.5 sm:w-4 sm:h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
                       </svg>
                     </motion.a>
