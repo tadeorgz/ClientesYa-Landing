@@ -30,10 +30,8 @@ const RealProjectCard = ({ whatsappHref }) => {
 
   const SectionBox = ({ item, index }) => {
     const boxRef = useRef(null)
-    const [mouseX, setMouseX] = useRef(0)
-    const [mouseY, setMouseY] = useRef(0)
-    const rotateX = useRef(0)
-    const rotateY = useRef(0)
+    const mouseX = useRef(0)
+    const mouseY = useRef(0)
 
     const handleMouseMove = (e) => {
       if (!boxRef.current) return
@@ -42,16 +40,18 @@ const RealProjectCard = ({ whatsappHref }) => {
       const centerX = rect.width / 2
       const centerY = rect.height / 2
 
-      mouseX.current = e.clientX - rect.left - centerX
-      mouseY.current = e.clientY - rect.top - centerY
+      mouseX.current = ((e.clientX - rect.left - centerX) / centerX) * 100
+      mouseY.current = ((e.clientY - rect.top - centerY) / centerY) * 100
 
-      rotateY.current = (mouseX.current / centerX) * 5
-      rotateX.current = -(mouseY.current / centerY) * 5
+      boxRef.current.style.setProperty('--mouse-x', `${mouseX.current + 50}%`)
+      boxRef.current.style.setProperty('--mouse-y', `${mouseY.current + 50}%`)
     }
 
     const handleMouseLeave = () => {
-      setMouseX(0)
-      setMouseY(0)
+      if (boxRef.current) {
+        boxRef.current.style.setProperty('--mouse-x', '50%')
+        boxRef.current.style.setProperty('--mouse-y', '50%')
+      }
     }
 
     return (
@@ -70,14 +70,14 @@ const RealProjectCard = ({ whatsappHref }) => {
         style={{
           backgroundImage: `linear-gradient(135deg, var(--gradient))`,
           '--gradient': item.color,
+          '--mouse-x': '50%',
+          '--mouse-y': '50%',
         }}
       >
         <div
           className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
           style={{
             background: 'radial-gradient(circle at var(--mouse-x) var(--mouse-y), rgba(255,255,255,0.1), transparent)',
-            '--mouse-x': `${mouseX.current + 50}%`,
-            '--mouse-y': `${mouseY.current + 50}%`,
           }}
         />
 
