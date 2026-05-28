@@ -48,7 +48,7 @@ export const products = [
         imagen:
             'https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&w=1200&q=80',
         descripcion: 'Cursos claros y organizados para todos los niveles, con información de fácil acceso y consultas directas.',
-        url: 'https://vercel.com/tadeorgz/academia-landing',
+        url: 'https://academia-demo-uy.vercel.app/',
         accent: '#3b82f6',
         gradient: 'from-blue-500 via-cyan-400 to-teal-300',
         emoji: '📚',
