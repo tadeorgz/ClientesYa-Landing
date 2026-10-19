@@ -7,6 +7,7 @@ import MenuDemos from './components/MenuDemos'
 import DraftIcon from './components/DraftIcon'
 import PrivacyNotice from './components/PrivacyNotice'
 import ConsentControls from './components/ConsentControls'
+import ZonaMueblesShowcase from './components/ZonaMueblesShowcase'
 
 export default function App() {
   return <>
@@ -136,9 +137,7 @@ export default function App() {
       <section id="caso-estudio" className="py-24 bg-cy-panel-light/30 border-t border-cy-line relative">
         <div className="mx-auto max-w-[1280px] px-5 sm:px-10">
             <div className="grid lg:grid-cols-2 gap-12 items-center">
-                <div className="order-2 lg:order-1 relative rounded-[24px] border border-cy-line bg-cy-panel shadow-2xl overflow-hidden aspect-[4/3] lg:aspect-auto lg:h-[600px] flex items-start justify-center">
-                    <img src="/zonamuebles-preview.webp" loading="lazy" decoding="async" alt="ZonaMuebles website preview" className="w-full h-auto object-cover object-top" />
-                </div>
+                <ZonaMueblesShowcase />
                 <div className="order-1 lg:order-2 flex flex-col items-start">
                     <div className="inline-flex items-center gap-2 rounded-full border border-cy-line bg-cy-panel/50 px-3 py-1 mb-6">
                         <span className="text-xs font-mono text-cy-lime uppercase tracking-wider">Caso de Estudio Real</span>

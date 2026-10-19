@@ -90,3 +90,32 @@ footer { padding-bottom: 100px !important; }
       html { scroll-behavior: auto; }
       *, *::before, *::after { animation: none !important; transition: none !important; }
     }
+
+.zona-showcase { min-width: 0; position: relative; padding: 22px; border: 1px solid #303a24; border-radius: 28px; background: radial-gradient(ellipse at 10% 0%, #c6fa5f12, transparent 65%), #11150f; }
+.zona-showcase-label { display: flex; align-items: center; gap: 8px; margin-bottom: 20px; color: #c6fa5f; font: 10px ui-monospace, monospace; letter-spacing: .12em; }
+.zona-showcase-label > span:last-child { margin-left: auto; color: #89947d; font-size: 9px; letter-spacing: .04em; }
+.zona-status-dot { width: 6px; height: 6px; border-radius: 50%; background: #c6fa5f; box-shadow: 0 0 12px #c6fa5f60; }
+.zona-browser { overflow: hidden; border: 1px solid #39422f; border-radius: 14px; box-shadow: 0 24px 48px #0005; }
+.zona-browser-toolbar { height: 48px; display: flex; align-items: center; gap: 12px; padding: 0 10px 0 16px; background: #1b2117; border-bottom: 1px solid #303a24; }
+.zona-window-dots { display: flex; gap: 4px; }
+.zona-window-dots i { width: 6px; height: 6px; border-radius: 50%; background: #657052; }
+.zona-address { display: flex; align-items: center; justify-content: center; gap: 7px; flex: 1; font: 11px ui-monospace, monospace; color: #b0b9a6; }
+.zona-icon-button { width: 40px; height: 40px; display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; border-radius: 9px; color: #c6fa5f; }
+.zona-icon-button:hover { background: #c6fa5f14; }
+.zona-preview-scroll { height: clamp(330px, 44vw, 490px); overflow-y: auto; overscroll-behavior-y: contain; scrollbar-width: thin; scrollbar-color: #7c9853 #17212c; background: #17212c; }
+.zona-preview-scroll img, .zona-dialog-content img { width: 100%; height: auto; display: block; }
+.zona-preview-controls { min-height: 48px; padding: 0 12px; display: flex; align-items: center; justify-content: space-between; gap: 8px; background: #1b2117; border-top: 1px solid #303a24; }
+.zona-preview-controls button { display: flex; align-items: center; gap: 5px; min-height: 44px; color: #c6fa5f; font-size: 11px; font-weight: 700; }
+.zona-preview-controls > span { color: #8e9a83; font-size: 10px; }
+.zona-showcase-caption { display: flex; justify-content: space-between; gap: 12px; margin-top: 18px; font-size: 11px; color: #b0b9a6; }
+.zona-showcase-caption > span:last-child { font: 8px ui-monospace, monospace; letter-spacing: .07em; color: #869475; align-self: center; }
+.zona-preview-dialog { padding: 0; width: min(800px, calc(100vw - 24px)); max-height: calc(100dvh - 32px); border: 1px solid #485737; border-radius: 20px; color: #f2f3ed; background: #11150f; overflow: hidden; }
+.zona-preview-dialog::backdrop { background: #030503dc; backdrop-filter: blur(8px); }
+.zona-preview-dialog[open] { display: flex; flex-direction: column; }
+.zona-dialog-header { display: flex; align-items: center; justify-content: space-between; padding: 14px 20px; gap: 12px; }
+.zona-dialog-header h3 { font-size: 17px; font-weight: 800; }
+.zona-dialog-header p { color: #a5ad9b; font-size: 12px; margin-top: 3px; }
+.zona-dialog-content { overflow-y: auto; overscroll-behavior: contain; min-height: 0; scrollbar-width: thin; scrollbar-color: #7c9853 #17212c; }
+.zona-dialog-link { display: block; text-align: center; padding: 15px; color: #c6fa5f; font-size: 13px; font-weight: 700; }
+body:has(.zona-preview-dialog[open]) { overflow: hidden; }
+@media (max-width: 480px) { .zona-showcase { padding: 14px; border-radius: 22px; } .zona-showcase-label { font-size: 9px; gap: 6px; } .zona-window-dots { display: none; } .zona-showcase-caption { flex-direction: column; gap: 8px; } .zona-showcase-caption > span:last-child { align-self: flex-start; } .zona-address { font-size: 10px; } }
