@@ -1,5 +1,5 @@
 import { useRef } from 'react'
-import { motion, useScroll, useSpring, useTransform } from 'framer-motion'
+import { motion as Motion, useScroll, useSpring, useTransform } from 'framer-motion'
 import { useInView } from 'react-intersection-observer'
 import WhatsAppButton from './WhatsAppButton'
 
@@ -55,7 +55,7 @@ const RealProjectCard = ({ whatsappHref, projectUrl = 'https://zonamueblesuy.com
     }
 
     return (
-      <motion.div
+      <Motion.div
         ref={boxRef}
         onMouseMove={handleMouseMove}
         onMouseLeave={handleMouseLeave}
@@ -78,32 +78,32 @@ const RealProjectCard = ({ whatsappHref, projectUrl = 'https://zonamueblesuy.com
         />
 
         <div className="relative h-full w-full flex flex-col items-center justify-center p-2 sm:p-4 text-center">
-          <motion.div
+          <Motion.div
             initial={{ scale: 0.8 }}
             animate={inView ? { scale: 1 } : { scale: 0.8 }}
             transition={{ delay: index * 0.15 + 0.2, duration: 0.4 }}
             className="text-3xl sm:text-4xl mb-1 sm:mb-2"
           >
             {item.icon}
-          </motion.div>
+          </Motion.div>
 
-          <motion.h3
+          <Motion.h3
             initial={{ opacity: 0 }}
             animate={inView ? { opacity: 1 } : { opacity: 0 }}
             transition={{ delay: index * 0.15 + 0.3, duration: 0.4 }}
             className="text-xs sm:text-sm font-bold text-slate-900 group-hover:text-slate-950 transition-colors"
           >
             {item.label}
-          </motion.h3>
+          </Motion.h3>
 
-          <motion.div
+          <Motion.div
             className="absolute inset-0 bg-gradient-to-t from-white/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"
             initial={false}
           />
         </div>
 
         <div className="absolute inset-0 rounded-2xl shadow-[inset_0_1px_1px_rgba(255,255,255,0.2)] pointer-events-none" />
-      </motion.div>
+      </Motion.div>
     )
   }
 
@@ -114,7 +114,7 @@ const RealProjectCard = ({ whatsappHref, projectUrl = 'https://zonamueblesuy.com
     >
       <div ref={inViewRef} className="space-y-8">
         {/* Header */}
-        <motion.div
+        <Motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
           transition={{ duration: 0.6, ease: 'easeOut' }}
@@ -130,10 +130,10 @@ const RealProjectCard = ({ whatsappHref, projectUrl = 'https://zonamueblesuy.com
           <p className="mt-4 max-w-xl text-sm leading-relaxed text-slate-600 sm:text-base">
             Una tienda de muebles que necesitaba orden y claridad. Diseñamos una landing que centraliza sus productos, explica sus servicios y acelera la conversión.
           </p>
-        </motion.div>
+        </Motion.div>
 
         {/* Main Card */}
-        <motion.div
+        <Motion.div
           ref={containerRef}
           style={prefersReducedMotion ? undefined : { y: cardY }}
           className="relative group"
@@ -155,7 +155,7 @@ const RealProjectCard = ({ whatsappHref, projectUrl = 'https://zonamueblesuy.com
               <div className="grid gap-8 lg:gap-12 lg:grid-cols-[1.1fr_0.9fr] items-center">
 
                 {/* Left: iPhone Mockup - FIXED PROPORTIONS */}
-                <motion.a
+                <Motion.a
                   href={projectUrl}
                   target="_blank"
                   rel="noopener noreferrer"
@@ -183,7 +183,7 @@ const RealProjectCard = ({ whatsappHref, projectUrl = 'https://zonamueblesuy.com
                         {/* Screen content with scroll effect - FIXED HEIGHTS */}
                         <div className="relative h-[460px] sm:h-[550px] lg:h-[600px] bg-gradient-to-b from-slate-100 to-white overflow-hidden">
                           {/* Scroll container */}
-                          <motion.div
+                          <Motion.div
                             initial={{ y: 0 }}
                             whileHover={{ y: "-75%" }}
                             transition={{ duration: 10, ease: "linear" }}
@@ -194,7 +194,7 @@ const RealProjectCard = ({ whatsappHref, projectUrl = 'https://zonamueblesuy.com
                               alt="Preview de ZonaMuebles"
                               className="w-full h-auto object-cover pointer-events-none"
                             />
-                          </motion.div>
+                          </Motion.div>
                         </div>
 
                         {/* Home indicator */}
@@ -209,18 +209,18 @@ const RealProjectCard = ({ whatsappHref, projectUrl = 'https://zonamueblesuy.com
                     <div className="absolute -inset-4 bg-gradient-to-r from-blue-500/20 to-teal-500/20 rounded-[3.5rem] opacity-0 group-hover/phone:opacity-100 blur-xl transition-opacity duration-500 -z-10" />
 
                     {/* Click hint text */}
-                    <motion.p
+                    <Motion.p
                       initial={{ opacity: 0, y: 10 }}
                       animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 10 }}
                       transition={{ delay: 0.7, duration: 0.5 }}
                       className="text-center mt-5 text-xs text-slate-500 font-medium tracking-wide"
                     >
                       ↻ Clickeá para ver la demo completa
-                    </motion.p>
+                    </Motion.p>
                   </div>
 
                   {/* External Link Indicator */}
-                  <motion.div
+                  <Motion.div
                     initial={{ opacity: 0 }}
                     whileHover={{ opacity: 1 }}
                     className="absolute top-0 right-0 sm:-right-4 lg:-right-6 bg-white border border-slate-200 rounded-full p-2.5 shadow-xl opacity-0 group-hover/phone:opacity-100 transition-opacity z-30"
@@ -228,13 +228,13 @@ const RealProjectCard = ({ whatsappHref, projectUrl = 'https://zonamueblesuy.com
                     <svg className="w-4 h-4 text-slate-950" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
                     </svg>
-                  </motion.div>
-                </motion.a>
+                  </Motion.div>
+                </Motion.a>
 
                 {/* Right: Bento Box Grid + Description */}
                 <div className="space-y-5 lg:space-y-6">
                   {/* Description Section */}
-                  <motion.div
+                  <Motion.div
                     initial={{ opacity: 0, y: 10 }}
                     animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 10 }}
                     transition={{ delay: 0.3, duration: 0.5 }}
@@ -244,10 +244,10 @@ const RealProjectCard = ({ whatsappHref, projectUrl = 'https://zonamueblesuy.com
                     <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
                       Organizamos cada sección para que los clientes naveguen sin fricción y lleguen directo al mensaje.
                     </p>
-                  </motion.div>
+                  </Motion.div>
 
                   {/* Bento Box Grid */}
-                  <motion.div
+                  <Motion.div
                     initial={{ opacity: 0 }}
                     animate={inView ? { opacity: 1 } : { opacity: 0 }}
                     transition={{ delay: 0.2, duration: 0.6 }}
@@ -256,12 +256,12 @@ const RealProjectCard = ({ whatsappHref, projectUrl = 'https://zonamueblesuy.com
                     {sectionItems.map((item, index) => (
                       <SectionBox key={item.label} item={item} index={index} />
                     ))}
-                  </motion.div>
+                  </Motion.div>
                 </div>
               </div>
 
               {/* Bottom CTA Section */}
-              <motion.div
+              <Motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
                 transition={{ delay: 0.5, duration: 0.5 }}
@@ -277,7 +277,7 @@ const RealProjectCard = ({ whatsappHref, projectUrl = 'https://zonamueblesuy.com
                     </h3>
                   </div>
 
-                  <motion.div
+                  <Motion.div
                     whileHover={{ scale: 1.02 }}
                     whileTap={{ scale: 0.98 }}
                     className="flex flex-col sm:flex-row gap-3 w-full sm:w-auto"
@@ -294,12 +294,12 @@ const RealProjectCard = ({ whatsappHref, projectUrl = 'https://zonamueblesuy.com
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
                       </svg>
                     </a>
-                  </motion.div>
+                  </Motion.div>
                 </div>
-              </motion.div>
+              </Motion.div>
             </div>
           </div>
-        </motion.div>
+        </Motion.div>
       </div>
 
       {/* Animated background decoration */}
