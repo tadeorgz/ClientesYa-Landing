@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="es-UY">
+<meta charset="utf-8" />
+<meta name="viewport" content="width=1200, initial-scale=1" />
+<title>ClientesYa — tarjeta para compartir</title>
+<style>
+  * { box-sizing: border-box; }
+  body { margin: 0; font-family: Arial, Helvetica, sans-serif; }
+  .card { width: 1200px; height: 630px; overflow: hidden; position: relative; padding: 56px 66px; background: #090b09; color: #f2f3ed; }
+  .grid { position: absolute; inset: 0; background-image: linear-gradient(#c6fa5f0b 1px, transparent 1px),linear-gradient(90deg,#c6fa5f0b 1px,transparent 1px); background-size: 70px 70px; }
+  .brand { display: flex; align-items: center; gap: 13px; font-size: 30px; font-weight: 700; letter-spacing: -1.2px; position: relative; }
+  .brand img { width: 46px; height: 46px; }
+  .eyebrow { color: #a5ad9b; font-size: 13px; letter-spacing: 2px; margin-left: auto; font-weight: 400; }
+  h1 { position: relative; margin: 48px 0 0; font-size: 86px; line-height: .99; font-weight: 700; letter-spacing: -5.2px; }
+  h1 span { color: #c6fa5f; }
+  .subtitle { color: #b5beaa; font-size: 20px; margin-top: 25px; position: relative; }
+  .symbol { position: absolute; width: 280px; height: 280px; top: 196px; right: 80px; transform: rotate(-9deg); }
+  .orbit { position: absolute; width: 380px; height: 380px; top: 140px; right: 27px; border: 1px solid #c6fa5f25; border-radius: 50%; }
+  .orbit.inner { width: 330px; height: 330px; top: 165px; right: 52px; border-style: dashed; }
+  .footer { position: absolute; bottom: 49px; left: 66px; right: 66px; display: flex; align-items: center; justify-content: space-between; padding-top: 24px; border-top: 1px solid #2a3024; }
+  .services { color: #a5ad9b; font-size: 13px; letter-spacing: .3px; }
+  .url { color: #c6fa5f; font-size: 21px; font-weight: 700; }
+</style>
+<div class="card">
+  <div class="grid"></div>
+  <div class="brand"><img src="/clientesya-symbol.svg" alt="" />ClientesYa.<span class="eyebrow">DISEÑO & DESARROLLO WEB · URUGUAY</span></div>
+  <div class="orbit"></div><div class="orbit inner"></div><img class="symbol" src="/clientesya-symbol.svg" alt="" />
+  <h1>Tu próximo cliente<br />está a un <span>clic.</span></h1>
+  <p class="subtitle">Webs a medida. Con la identidad de tu negocio.</p>
+  <div class="footer"><span class="services">LANDINGS &nbsp; / &nbsp; CATÁLOGOS &nbsp; / &nbsp; MENÚS QR</span><span class="url">clientesya.uy ↗</span></div>
+</div>
+</html>

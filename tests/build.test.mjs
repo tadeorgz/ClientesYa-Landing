@@ -11,6 +11,53 @@ test('production HTML includes readable Spanish and all menu demos without runni
   assert(!fs.readdirSync('dist').some(file => file.endsWith('.mp4')), 'Unused videos must stay out of build')
 })
 
+test('search crawlers receive a canonical URL and a real sitemap reference', () => {
+  const html = fs.readFileSync('dist/index.html', 'utf8')
+  const robots = fs.readFileSync('dist/robots.txt', 'utf8')
+  assert(!robots.includes('\\n'), 'robots.txt must contain real line breaks')
+  assert.match(robots, /^User-agent: \*\nAllow: \/\nDisallow: \/api\/\nSitemap: https:\/\/.+\/sitemap\.xml\n$/)
+  const canonical = html.match(/rel="canonical" href="([^\"]+)"/)[1]
+  const sitemap = fs.readFileSync('dist/sitemap.xml', 'utf8')
+  assert(sitemap.includes(`<loc>${canonical}</loc>`))
+  assert(html.includes(`property="og:url" content="${canonical}"`))
+})
+
+test('sharing previews have complete image metadata and deployable image files', () => {
+  const html = fs.readFileSync('dist/index.html', 'utf8')
+  const image = html.match(/property="og:image" content="([^\"]+)"/)
+  assert(image, 'Open Graph must have an image even without environment overrides')
+  assert(image[1].startsWith('https://'))
+  assert(html.includes(`name="twitter:image" content="${image[1]}"`))
+  for (const [property, value] of [['og:image:width', '1200'], ['og:image:height', '630'], ['og:image:type', 'image/png']]) assert(html.includes(`property="${property}" content="${value}"`))
+  assert.match(html, /property="og:image:alt" content="[^\"]+"/)
+  const png = fs.readFileSync(`dist${new URL(image[1]).pathname}`)
+  assert.equal(png.readUInt32BE(16), 1200)
+  assert.equal(png.readUInt32BE(20), 630)
+  assert(fs.existsSync('dist/favicon-96.png'))
+  assert(fs.existsSync('dist/apple-touch-icon.png'))
+})
+
+test('structured data identifies the business, website and page consistently', () => {
+  const html = fs.readFileSync('dist/index.html', 'utf8')
+  const schema = JSON.parse(html.match(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/)[1])
+  assert(Array.isArray(schema['@graph']))
+  const organization = schema['@graph'].find(node => node['@type'] === 'Organization')
+  const website = schema['@graph'].find(node => node['@type'] === 'WebSite')
+  const webpage = schema['@graph'].find(node => node['@type'] === 'WebPage')
+  assert.equal(organization.name, 'ClientesYa')
+  assert.equal(website.publisher['@id'], organization['@id'])
+  assert.equal(webpage.isPartOf['@id'], website['@id'])
+  assert.equal(webpage.inLanguage, 'es-UY')
+  assert.equal(organization.sameAs.length, 2)
+})
+
+test('early theme initialization is compatible with production script policy', () => {
+  const html = fs.readFileSync('dist/index.html', 'utf8')
+  assert(!/<script(?![^>]*type="application\/ld\+json")(?![^>]*src=)[^>]*>/.test(html), 'Executable inline scripts are blocked by production CSP')
+  assert(html.includes('src="/theme-init.js"'))
+  assert(fs.existsSync('dist/theme-init.js'))
+})
+
 test('prerendered page has working local images, complete navigation and the theme controls', () => {
   const html = fs.readFileSync('dist/index.html', 'utf8')
   for (const [, src] of html.matchAll(/<img[^>]+src="([^\"]+)"/g)) {

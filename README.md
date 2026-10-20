@@ -21,7 +21,7 @@ npm run build
 npm run preview
 ```
 
-El build prerenderiza el contenido en `dist/index.html`, genera datos estructurados y `robots.txt`. Al configurar `VITE_PUBLIC_SITE_URL`, agrega canonical, URL e imagen absolutas para redes y `sitemap.xml`. No inventa un dominio mientras no esté definido.
+El build prerenderiza el contenido en `dist/index.html` y genera datos estructurados, `robots.txt`, canonical y `sitemap.xml` para `https://clientesya.uy/`. `VITE_PUBLIC_SITE_URL` permite cambiar el dominio principal. La tarjeta social PNG y los metadatos para compartir están disponibles sin ejecutar JavaScript.
 
 Vercel: framework Vite, comando `npm run build`, carpeta `dist`. Las funciones de `api/` procesan consultas y eventos. El build copia solo los recursos que utiliza la nueva landing; los videos originales siguen en `public/` y no se incluyen en el sitio compilado.
 
@@ -47,4 +47,4 @@ Landing desde USD 149 iniciales + USD 15/mes; dominio por un año e impuestos no
 
 ## Configuración
 
-`.env.example` enumera las variables. Las variables `VITE_` son públicas. `GOOGLE_SCRIPT_SECRET` y `GOOGLE_SCRIPT_URL` se configuran solo en el backend y nunca se agregan a archivos versionados. Al comprar el dominio, actualizá `VITE_PUBLIC_SITE_URL` y `ALLOWED_ORIGIN` y volvé a compilar.
+`.env.example` enumera las variables. Las variables `VITE_` son públicas. `GOOGLE_SCRIPT_SECRET` y `GOOGLE_SCRIPT_URL` se configuran solo en el backend y nunca se agregan a archivos versionados. En producción, el origen de contacto `ALLOWED_ORIGIN` debe corresponder a `https://clientesya.uy`. Seguí [los pasos de SEO, Google y vista previa](docs/seo.md) después del despliegue.
