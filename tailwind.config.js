@@ -4,8 +4,8 @@ export default {
     theme: {
         extend: {
             colors: {
-                'cy-dark': '#090b09', 'cy-panel': '#121510', 'cy-panel-light': '#191d16',
-                'cy-line': '#2a3024', 'cy-lime': '#c6fa5f', 'cy-white': '#f2f3ed', 'cy-text-sec': '#a5ad9b',
+                'cy-dark': 'rgb(var(--page) / <alpha-value>)', 'cy-panel': 'rgb(var(--panel) / <alpha-value>)', 'cy-panel-light': 'rgb(var(--raised) / <alpha-value>)',
+                'cy-line': 'rgb(var(--line) / <alpha-value>)', 'cy-lime': 'rgb(var(--accent) / <alpha-value>)', 'cy-white': 'rgb(var(--ink) / <alpha-value>)', 'cy-text-sec': 'rgb(var(--muted) / <alpha-value>)',
             },
             fontFamily: { sans: ['Manrope', 'system-ui', 'sans-serif'] },
             backgroundImage: { 'cy-glow': 'radial-gradient(circle at 50% 0%, rgba(198,250,95,0.1) 0%, transparent 60%)' },

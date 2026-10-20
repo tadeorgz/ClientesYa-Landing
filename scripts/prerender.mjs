@@ -7,7 +7,8 @@ let siteUrl = settings.VITE_PUBLIC_SITE_URL || process.env.VERCEL_PROJECT_PRODUC
 if (siteUrl && !siteUrl.startsWith('https://')) siteUrl = `https://${siteUrl}`
 if (siteUrl) siteUrl = new URL(siteUrl).origin
 let html = fs.readFileSync('dist/index.html', 'utf8')
-for (const asset of ['clientesya-logo.webp', 'zonamuebles-preview.webp', 'image.png', 'favicon.svg']) fs.copyFileSync(`public/${asset}`, `dist/${asset}`)
+for (const asset of ['clientesya-symbol.svg', 'image.png']) fs.copyFileSync(`public/${asset}`, `dist/${asset}`)
+fs.cpSync('public/showcase', 'dist/showcase', { recursive: true })
 html = html.replace('<div id="root"></div>', `<div id="root">${render()}</div>`)
 if (siteUrl) {
   const metadata = `<link rel="canonical" href="${siteUrl}/" /><meta property="og:url" content="${siteUrl}/" /><meta property="og:image" content="${siteUrl}/image.png" /><meta name="twitter:image" content="${siteUrl}/image.png" />`

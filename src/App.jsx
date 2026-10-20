@@ -1,531 +1,74 @@
+import { ArrowDown, ArrowRight, ArrowUpRight, Check, Code2, Globe, LayoutTemplate, MessageCircle, Plus, QrCode, ShoppingBag } from 'lucide-react'
+import { MotionConfig } from 'framer-motion'
+import { createElement } from 'react'
 import { handleTrackedClick } from './utils/analytics'
 import { createWhatsAppLink } from './utils/whatsapp'
 import { siteConfig } from './config/siteConfig'
 import Navbar from './components/PremiumNavbar'
 import ContactForm from './components/ContactForm'
-import MenuDemos from './components/MenuDemos'
-import DraftIcon from './components/DraftIcon'
 import PrivacyNotice from './components/PrivacyNotice'
 import ConsentControls from './components/ConsentControls'
-import ZonaMueblesShowcase from './components/ZonaMueblesShowcase'
+import { FoodScene, HeroScene, Reveal, ZonaScene } from './components/ShowcaseScenes'
+import { products } from './data/products'
+import { menuDemos } from './data/menuDemos'
+
+const wa = message => createWhatsAppLink(siteConfig.whatsappNumber, message)
+const projectMessage = 'Hola ClientesYa, quiero contarles sobre mi proyecto y pedir un presupuesto a medida.'
+const services = [
+  { number: '01', icon: LayoutTemplate, title: 'Webs que te representan.', description: 'Una landing con tu identidad, tu propuesta y un camino claro para que te contacten.', label: 'Landing pages', id: 'landing' },
+  { number: '02', icon: ShoppingBag, title: 'Tu catálogo, siempre abierto.', description: 'Productos bien presentados y consultas por WhatsApp con el artículo que le interesó a tu cliente.', label: 'Catálogos visuales', id: 'catalog' },
+  { number: '03', icon: QrCode, title: 'Una carta con personalidad.', description: 'Menús digitales QR que llevan el estilo de tu local hasta el celular de cada comensal.', label: 'Menús digitales', id: 'menu' },
+]
+const questions = [
+  ['¿Qué podemos crear juntos?', 'Landings, catálogos y menús digitales. También podemos conversar sobre funciones, pagos online e integraciones para tu negocio: se presupuestan según el alcance.'],
+  ['¿Cuánto demora en estar lista mi web?', 'Depende del alcance y del contenido disponible. Antes de empezar acordamos las etapas y una fecha de entrega para tu proyecto.'],
+  ['¿Qué incluye el precio de la landing?', 'El diseño y desarrollo inicial parten desde USD 149. El mantenimiento y hosting cuestan USD 15/mes. Incluye dominio por un año; su renovación se cotiza. Impuestos no incluidos. El alcance del mantenimiento se acuerda antes de empezar.'],
+  ['¿Puedo actualizar mi menú digital?', 'Sí. Podemos ocuparnos de los cambios que nos envíes o presupuestar un panel autogestionable. Son modalidades distintas y ambas se cotizan según lo que necesites.'],
+  ['¿La web funciona en el celular?', 'Sí. Diseñamos la experiencia para celulares, tablets y computadoras, con navegación y contenido adaptados a cada pantalla.'],
+  ['¿Puedo usar mi WhatsApp actual?', 'Sí. Vinculamos los botones al número que elijas y preparamos mensajes según el servicio o producto consultado. Vos seguís atendiendo desde tu WhatsApp.'],
+]
 
 export default function App() {
-  return <>
-    <a href="#inicio" className="skip-link">Ir al contenido</a>
-<div id="page" onClick={handleTrackedClick} className="antialiased min-h-screen bg-cy-dark text-cy-white overflow-x-hidden relative w-full">
-
-
+  return <MotionConfig reducedMotion="user"><a href="#inicio" className="skip-link">Ir al contenido</a><div id="page" onClick={handleTrackedClick}>
     <Navbar />
-
-
-    <div aria-hidden="true" className="pointer-events-none absolute inset-0 -z-20">
-      <div className="absolute inset-0 bg-grid opacity-30"></div>
-      <div className="absolute inset-x-0 top-0 h-[800px] bg-cy-glow"></div>
-      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-cy-dark/80 to-cy-dark"></div>
-    </div>
-
     <main>
-
-      <section id="inicio" className="relative pt-32 pb-16 sm:pt-40 sm:pb-24 lg:pt-48 lg:pb-32">
-        <div className="mx-auto max-w-[1280px] px-5 sm:px-10 lg:px-10">
-          <div className="grid lg:grid-cols-2 gap-12 lg:gap-8 items-center">
-            <div className="flex flex-col items-start text-left max-w-2xl">
-              <div className="inline-flex items-center gap-2 rounded-full border border-cy-line bg-cy-panel/50 px-3 py-1 mb-8">
-                <span className="h-2 w-2 rounded-full bg-cy-lime animate-pulse"></span>
-                <span className="text-xs font-mono text-cy-text-sec uppercase tracking-wider">Estudio Boutique Web</span>
-              </div>
-              <h1 className="text-[46px] sm:text-[60px] lg:text-[80px] xl:text-[104px] font-extrabold leading-[1.05] tracking-tight text-cy-white">
-                Tu próximo cliente está a un <span className="text-cy-lime">clic.</span>
-              </h1>
-              <p className="mt-8 text-[16px] sm:text-[18px] leading-relaxed text-cy-text-sec max-w-lg">
-                Webs a medida para empresas uruguayas que reciben consultas por WhatsApp. Transformamos tu información en una experiencia clara, rápida y enfocada en vender.
-              </p>
-              <div className="mt-10 flex flex-col sm:flex-row gap-4 w-full sm:w-auto">
-                <a id="hero-cta-primary" href={createWhatsAppLink(siteConfig.whatsappNumber, "Hola ClientesYa, quiero una landing para mi negocio.")} target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center gap-2 rounded-[12px] bg-cy-lime px-8 py-4 text-base font-bold text-cy-dark transition-all hover:brightness-95 hover:-translate-y-1 w-full sm:w-auto">
-                  <DraftIcon name="lucide:message-circle" width="20" />
-                  <span>Quiero mi web</span>
-                </a>
-                <a id="hero-cta-secondary" href="#proyectos" className="inline-flex items-center justify-center gap-2 rounded-[12px] border border-cy-line bg-transparent px-8 py-4 text-base font-bold text-cy-white transition-all hover:bg-cy-panel hover:border-cy-text-sec w-full sm:w-auto">
-                  <span>Ver proyectos</span>
-                  <DraftIcon name="lucide:arrow-right" width="18" />
-                </a>
-              </div>
-            </div>
-            <div className="relative w-full h-[400px] sm:h-[500px] lg:h-[600px] rounded-[24px] border border-cy-line bg-cy-panel-light/30 shadow-2xl overflow-hidden flex items-center justify-center backdrop-blur-sm">
-                <div className="absolute inset-0 bg-gradient-to-tr from-cy-lime/5 to-transparent"></div>
-                <div className="relative w-full max-w-[85%] h-full max-h-[85%]">
-                    <div className="absolute top-0 right-0 w-3/4 h-[80%] rounded-[16px] border border-cy-line bg-cy-panel shadow-xl overflow-hidden translate-x-4 -translate-y-4">
-                        <div className="h-8 border-b border-cy-line bg-cy-panel-light flex items-center px-4 gap-1.5">
-                             <div className="w-2.5 h-2.5 rounded-full bg-red-500/50"></div>
-                             <div className="w-2.5 h-2.5 rounded-full bg-yellow-500/50"></div>
-                             <div className="w-2.5 h-2.5 rounded-full bg-green-500/50"></div>
-                        </div>
-                        <div className="p-6 opacity-30">
-                            <div className="w-1/2 h-6 bg-cy-line rounded mb-4"></div>
-                            <div className="w-full h-3 bg-cy-line rounded mb-2"></div>
-                            <div className="w-5/6 h-3 bg-cy-line rounded mb-2"></div>
-                            <div className="w-3/4 h-3 bg-cy-line rounded"></div>
-                        </div>
-                    </div>
-                    <div className="absolute bottom-0 left-0 w-[55%] h-[90%] rounded-[24px] border border-cy-line bg-[#1c2117] shadow-2xl overflow-hidden">
-                        <div className="absolute top-0 inset-x-0 h-6 flex justify-center pt-2">
-                            <div className="w-1/3 h-4 bg-cy-dark rounded-full"></div>
-                        </div>
-                        <div className="mt-12 p-4 flex flex-col gap-3 h-full">
-                            <div className="self-start bg-cy-panel-light border border-cy-line rounded-2xl rounded-tl-none p-3 max-w-[85%]">
-                                <div className="w-20 h-2 bg-cy-line rounded mb-2 opacity-50"></div>
-                                <div className="w-24 h-2 bg-cy-line rounded opacity-50"></div>
-                            </div>
-                            <div className="self-end bg-cy-lime text-cy-dark rounded-2xl rounded-tr-none p-3 max-w-[85%]">
-                                <div className="text-[10px] font-bold mb-1 opacity-90">¡Hola! Me encanta el diseño.</div>
-                                <div className="text-[9px] opacity-70">Quiero empezar mi proyecto.</div>
-                            </div>
-                            <div className="self-start bg-cy-panel-light border border-cy-line rounded-2xl rounded-tl-none p-3 max-w-[85%]">
-                                <div className="w-24 h-2 bg-cy-line rounded mb-2 opacity-50"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-          </div>
-        </div>
+      <section id="inicio" className="hero-section">
+        <div className="hero-grid" aria-hidden="true" />
+        <div className="page-shell hero-layout"><div className="hero-copy">
+          <p className="eyebrow"><span className="status-dot" /> DISEÑO & DESARROLLO WEB · URUGUAY</p>
+          <h1>Tu próximo <br />cliente está <br />a un <em>clic.</em><span className="hero-spark" aria-hidden="true">↗</span></h1>
+          <p className="hero-description">Tu negocio tiene algo propio.<br />Tu web también debería.</p>
+          <p className="hero-detail">Diseñamos y desarrollamos experiencias a medida para convertir lo que hacés en algo que se ve, se entiende y conecta.</p>
+          <div className="hero-actions"><a id="hero-cta-primary" className="primary-button" href={wa(projectMessage)} target="_blank" rel="noopener noreferrer">Contanos tu proyecto <ArrowUpRight size={18} /></a><a className="text-link" href="#caso-real">Explorá lo que hacemos <ArrowDown size={16} /></a></div>
+          <div className="hero-signature"><span className="signature-line" />Diseño propio. Desarrollo real. Trato directo.</div>
+        </div><HeroScene /></div>
+        <div className="hero-bottom page-shell"><span>DE TU IDEA A TU PRÓXIMO PASO.</span><a href="#servicios">SEGUÍ EXPLORANDO <ArrowDown size={13} /></a><span>UY / 2026</span></div>
       </section>
 
-
-      <section id="servicios" className="py-24 bg-cy-dark relative">
-        <div className="mx-auto max-w-[1280px] px-5 sm:px-10">
-            <div className="mb-16">
-                <h2 className="text-[42px] sm:text-[56px] font-extrabold tracking-tight text-cy-white">Soluciones directas.</h2>
-                <p className="mt-4 text-lg text-cy-text-sec max-w-2xl">Tres formatos pensados para negocios que no quieren perder tiempo y buscan concretar ventas.</p>
-            </div>
-            <div className="grid lg:grid-cols-3 gap-6">
-                <div className="rounded-[24px] border border-cy-line bg-cy-panel p-8 flex flex-col transition-colors hover:border-cy-lime/30">
-                    <div className="h-12 w-12 rounded-xl bg-cy-panel-light border border-cy-line flex items-center justify-center mb-6">
-                        <DraftIcon name="lucide:layout-template" className="text-cy-white text-xl" />
-                    </div>
-                    <h3 className="text-2xl font-bold mb-3 text-cy-white">Landing Pages</h3>
-                    <p className="text-cy-text-sec text-base mb-8 flex-grow">Una página enfocada en tu propuesta de valor, rápida y sin distracciones, diseñada para que te escriban.</p>
-                    <a id="cta-service-landing" href={createWhatsAppLink(siteConfig.whatsappNumber, "Me interesa una Landing Page")} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-cy-lime font-bold text-sm hover:underline">
-                        Consultar por landing <DraftIcon name="lucide:arrow-up-right" />
-                    </a>
-                </div>
-                <div className="rounded-[24px] border border-cy-line bg-cy-panel p-8 flex flex-col transition-colors hover:border-cy-lime/30">
-                    <div className="h-12 w-12 rounded-xl bg-cy-panel-light border border-cy-line flex items-center justify-center mb-6">
-                        <DraftIcon name="lucide:shopping-bag" className="text-cy-white text-xl" />
-                    </div>
-                    <h3 className="text-2xl font-bold mb-3 text-cy-white">Catálogos Visuales</h3>
-                    <p className="text-cy-text-sec text-base mb-8 flex-grow">Mostrá tus productos con fotos, descripciones y un botón de WhatsApp por cada artículo para pedidos exactos.</p>
-                    <a id="cta-service-catalog" href={createWhatsAppLink(siteConfig.whatsappNumber, "Me interesa un Catálogo Visual")} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-cy-lime font-bold text-sm hover:underline">
-                        Consultar por catálogo <DraftIcon name="lucide:arrow-up-right" />
-                    </a>
-                </div>
-                <div className="rounded-[24px] border border-cy-line bg-cy-panel p-8 flex flex-col transition-colors hover:border-cy-lime/30">
-                    <div className="h-12 w-12 rounded-xl bg-cy-panel-light border border-cy-line flex items-center justify-center mb-6">
-                        <DraftIcon name="lucide:utensils" className="text-cy-white text-xl" />
-                    </div>
-                    <h3 className="text-2xl font-bold mb-3 text-cy-white">Menús Digitales QR</h3>
-                    <p className="text-cy-text-sec text-base mb-8 flex-grow">La carta de tu restaurante en el celular de tus clientes. Fácil de leer, siempre actualizada y sin descargar apps.</p>
-                    <a id="cta-service-menu" href={createWhatsAppLink(siteConfig.whatsappNumber, "Me interesa un Menú Digital")} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-cy-lime font-bold text-sm hover:underline">
-                        Quiero mi menú digital <DraftIcon name="lucide:arrow-up-right" />
-                    </a>
-                </div>
-            </div>
-        </div>
+      <section id="servicios" className="section-space page-shell"><Reveal className="section-heading"><div><p className="eyebrow">01 / LO QUE HACEMOS</p><h2>Tu negocio.<br /><span className="muted-heading">Una nueva posibilidad.</span></h2></div><p>De una primera web a una experiencia más completa. Empezamos por entender qué necesitás.</p></Reveal>
+        <div className="services-grid">{services.map(({ number, icon, title, description, label, id }) => <Reveal key={id} className="service-card"><div className="service-card-top">{createElement(icon, { size: 24, strokeWidth: 1.5 })}<span>{number}</span></div><p className="eyebrow">{label}</p><h3>{title}</h3><p>{description}</p><a id={`cta-service-${id}`} className="text-link" href={wa(`Hola ClientesYa, me interesa ${label.toLowerCase()} para mi negocio.`)} target="_blank" rel="noopener noreferrer">Hablemos de tu idea <ArrowUpRight size={17} /></a></Reveal>)}</div>
       </section>
 
+      <section id="caso-real" className="case-section"><div className="page-shell case-layout"><div className="case-copy"><p className="eyebrow">02 / UN PROYECTO EN EL MUNDO REAL</p><h2>Su estilo.<br />Su catálogo.<br /><span className="accent-text">Su nueva web.</span></h2><p className="case-name">ZonaMuebles <span>CLIENTE REAL</span></p><p>Un catálogo pensado para descubrir muebles, encontrar un estilo propio y consultar por WhatsApp. Una experiencia que acompaña al negocio en cada pantalla.</p><div className="case-tags"><span>Diseño a medida</span><span>Catálogo visual</span><span>Responsive</span></div><a id="zona-preview-live" data-source="catalog" className="primary-button" href="https://zonamueblesuy.com" target="_blank" rel="noopener noreferrer">Visitar ZonaMuebles <ArrowUpRight size={18} /></a><p className="composition-caption">Una composición del proyecto. Explorá la experiencia completa en su sitio.</p></div><ZonaScene /></div></section>
 
-      <section id="caso-estudio" className="py-24 bg-cy-panel-light/30 border-t border-cy-line relative">
-        <div className="mx-auto max-w-[1280px] px-5 sm:px-10">
-            <div className="grid lg:grid-cols-2 gap-12 items-center">
-                <ZonaMueblesShowcase />
-                <div className="order-1 lg:order-2 flex flex-col items-start">
-                    <div className="inline-flex items-center gap-2 rounded-full border border-cy-line bg-cy-panel/50 px-3 py-1 mb-6">
-                        <span className="text-xs font-mono text-cy-lime uppercase tracking-wider">Caso de Estudio Real</span>
-                    </div>
-                    <h2 className="text-[36px] sm:text-[48px] font-extrabold tracking-tight text-cy-white mb-6">
-                        Catálogo con WhatsApp para ZonaMuebles
-                    </h2>
-                    <p className="text-lg text-cy-text-sec mb-8">
-                        Desarrollamos una landing page enfocada en conversión que permite a los clientes navegar el catálogo completo y consultar directamente por el mueble de su interés mediante WhatsApp.
-                    </p>
-                    <div className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto">
-                        <a id="btn-zonamuebles-visit" href="https://zonamueblesuy.com" target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center gap-2 rounded-[12px] bg-cy-panel border border-cy-line px-6 py-3 text-sm font-bold text-cy-white transition-all hover:border-cy-lime w-full sm:w-auto">
-                            <span>Visitar sitio en vivo</span>
-                            <DraftIcon name="lucide:external-link" width="16" />
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
+      <section id="menu-digital" className="section-space page-shell"><Reveal className="section-heading"><div><p className="eyebrow">03 / DISEÑO QUE ABRE EL APETITO</p><h2>Tres cartas.<br /><span className="muted-heading">Cero copias.</span></h2></div><p>Una misma idea puede tener mil sabores. Demos de menús digitales QR con una identidad propia para cada local.</p></Reveal>
+        <div className="food-grid">{menuDemos.map((demo, i) => <Reveal key={demo.id} className="food-project"><FoodScene type={demo.style} /><div className="food-project-info"><div><p className="eyebrow">DEMO / 0{i + 1}</p><h3>{demo.name}</h3><p>{demo.label}</p></div><a id={`demo-${demo.id}`} href={demo.url} target="_blank" rel="noopener noreferrer" className="round-link" aria-label={`Abrir demo completa de ${demo.name}`}><ArrowUpRight size={22} /></a></div><a className="text-link food-inquiry" data-source={demo.id} href={wa(`Hola ClientesYa, vi la demo de ${demo.name} y quiero un menú digital a medida para mi negocio.`)} target="_blank" rel="noopener noreferrer">Quiero uno así <ArrowRight size={15} /></a></Reveal>)}</div>
+        <div className="menu-options"><div><QrCode size={25} /><h3>La carta cambia.<br />Tu web la acompaña.</h3></div><div><h4>Actualizaciones a pedido</h4><p>Nos enviás los cambios y nos encargamos.</p><a id="cta-menu-demanda" className="text-link" href={wa('Hola ClientesYa, quiero cotizar un menú digital con actualizaciones a pedido.')} target="_blank" rel="noopener noreferrer">A cotizar <ArrowUpRight size={15} /></a></div><div><h4>Panel autogestionable</h4><p>Actualizá tus platos y precios desde tu panel.</p><a id="cta-menu-auto" className="text-link" href={wa('Hola ClientesYa, quiero cotizar un menú digital autogestionable.')} target="_blank" rel="noopener noreferrer">A cotizar <ArrowUpRight size={15} /></a></div></div>
       </section>
 
+      <section id="proyectos" className="other-projects section-space"><div className="page-shell"><Reveal className="section-heading"><div><p className="eyebrow">04 / MÁS FORMAS DE IMAGINARLO</p><h2>¿Y si fuera<br /><span className="muted-heading">para tu rubro?</span></h2></div><p>Exploraciones de diseño web en Uruguay. Todos estos proyectos son demos, para mostrarte lo que podemos crear.</p></Reveal><div className="project-gallery">{products.map((demo, index) => <a className="project-row" id={`demo-link-${demo.id}`} href={demo.url} key={demo.id} target="_blank" rel="noopener noreferrer"><span className="project-number">{String(index + 1).padStart(2, '0')}</span><span className="project-title">{demo.nombre.replace(' Demo', '')}<small>DEMO</small></span><span className="project-category">{demo.categoria}</span><ArrowUpRight size={20} /></a>)}</div><a href="#contacto" className="text-link gallery-cta">¿Tu idea es diferente? Mejor, contanos. <ArrowRight size={17} /></a></div></section>
 
-      <section id="proyectos" className="py-24 bg-cy-dark relative border-t border-cy-line">
-        <div className="mx-auto max-w-[1280px] px-5 sm:px-10">
-            <div className="mb-16 flex flex-col lg:flex-row lg:items-end justify-between gap-6">
-                <div className="max-w-2xl">
-                    <h2 className="text-[42px] sm:text-[56px] font-extrabold tracking-tight text-cy-white">Diseño web en Uruguay.</h2>
-                    <p className="mt-4 text-lg text-cy-text-sec">Explorá nuestros demos interactivos diseñados específicamente para cada rubro. Todos incluyen integración directa con WhatsApp.</p>
-                </div>
-            </div>
+      <section id="planes" className="section-space page-shell"><Reveal className="section-heading"><div><p className="eyebrow">05 / UNA INVERSIÓN CLARA</p><h2>Un buen comienzo.<br /><span className="muted-heading">Y espacio para crecer.</span></h2></div><p>Una base para empezar o un desarrollo pensado desde cero. Encontramos el alcance que tiene sentido para tu negocio.</p></Reveal><div className="pricing-grid"><Reveal className="price-card"><div className="price-card-top"><span className="eyebrow">TU PRIMERA WEB</span><Globe size={22} /></div><h3>Landing a medida</h3><p>Tu propuesta, bien presentada.<br />Una página enfocada en que te contacten.</p><div className="price-value"><span>desde</span><strong>USD 149</strong><span>pago inicial</span></div><ul>{['Diseño y desarrollo inicial', 'Adaptada a celulares y computadoras', 'Contacto directo por WhatsApp', 'Dominio por un año incluido'].map(item => <li key={item}><Check size={17} />{item}</li>)}</ul><div className="monthly-price">Mantenimiento y hosting <strong>USD 15/mes</strong></div><a id="pricing-landing-whatsapp" href={wa('Hola ClientesYa, me interesa la landing desde USD 149 y el mantenimiento de USD 15 por mes. Quiero contarles sobre mi negocio.')} target="_blank" rel="noopener noreferrer" className="primary-button">Empezar mi web <ArrowUpRight size={18} /></a><p className="pricing-note">Impuestos no incluidos. Renovación del dominio a cotizar. Alcance de mantenimiento a acordar.</p></Reveal><Reveal className="custom-card"><span className="eyebrow">TU SIGUIENTE IDEA</span><Code2 size={44} strokeWidth={1} /><h3>Si lo imaginás,<br />conversemos.</h3><p>Catálogos, menús, pagos online e integraciones. Contanos qué necesitás resolver y pensemos juntos cómo llevarlo a la web.</p><div className="custom-tags"><span>Tu identidad</span><span>Tus funciones</span><span>Tu próximo paso</span></div><a id="btn-pricing-custom" href={wa(projectMessage)} target="_blank" rel="noopener noreferrer" className="secondary-button">Cotizar mi proyecto <ArrowUpRight size={18} /></a><span className="pricing-note">Presupuesto según alcance.</span></Reveal></div></section>
 
-            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+      <section id="proceso" className="process-section section-space"><div className="page-shell"><Reveal className="section-heading"><div><p className="eyebrow">06 / ASÍ LO HACEMOS</p><h2>De “tengo una idea”<br /><span className="muted-heading">a “esta es mi web”.</span></h2></div></Reveal><div className="process-grid">{[['Nos contás.', 'Conocemos tu negocio, tus objetivos y lo que te hace diferente.'], ['Le damos forma.', 'Diseñamos y desarrollamos una propuesta a tu medida.'], ['La hacemos tuya.', 'Revisamos juntos el contenido y afinamos los detalles.'], ['Salimos al mundo.', 'Publicamos y acordamos cómo acompañar tu web.']].map(([title, text], i) => <Reveal key={title} className="process-step"><span>0{i + 1}</span><h3>{title}</h3><p>{text}</p></Reveal>)}</div></div></section>
 
-                <div className="rounded-[20px] border border-cy-line bg-cy-panel p-6 flex flex-col transition-all hover:border-cy-lime/50">
-                    <div className="flex items-center justify-between mb-4">
-                        <span className="text-3xl">🏠</span>
-                        <span className="text-[10px] font-mono text-cy-text-sec uppercase tracking-wider bg-cy-panel-light px-2 py-1 rounded">Inmobiliaria</span>
-                    </div>
-                    <h3 className="text-lg font-bold text-cy-white mb-2">Inmobiliaria Demo</h3>
-                    <p className="text-sm text-cy-text-sec mb-6 flex-grow">Redefinimos la experiencia de venta de inmuebles con elegancia, mostrando propiedades de forma moderna y clara.</p>
-                    <a id="demo-link-8" href="https://inmobiliaria-landing-uy.vercel.app/" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-cy-lime font-bold text-xs hover:underline mt-auto">
-                        Ver demo interactivo <DraftIcon name="lucide:arrow-right" />
-                    </a>
-<a id="demo-inquiry-8" href={createWhatsAppLink(siteConfig.whatsappNumber, "Hola ClientesYa, vi la demo Inmobiliaria Demo y quiero una web a medida para mi negocio. ¿Podemos hablar?")} target="_blank" rel="noopener noreferrer" className="mt-4 inline-flex items-center gap-2 text-sm font-bold text-cy-white hover:text-cy-lime">Quiero una así <DraftIcon name="lucide:message-circle" width="15" /></a>
-                </div>
+      <section id="nosotros" className="about-section section-space page-shell"><figure className="about-portrait"><img src="/showcase/tadeo.jpeg" width="1600" height="1600" loading="lazy" decoding="async" alt="Tadeo, desarrollador detrás de ClientesYa" /><figcaption><div><strong>Tadeo</strong><span>Diseño & desarrollo web</span></div><span className="brand-symbol" aria-hidden="true" /></figcaption></figure><Reveal><p className="eyebrow">DE ESTE LADO, TADEO.</p><h2>Tu proyecto merece<br /><span className="muted-heading">a alguien que lo escuche.</span></h2><p>Soy Tadeo, desarrollador detrás de ClientesYa. Trabajo con negocios uruguayos para crear webs que representen lo que hacen y les faciliten el día a día.</p><p>Hablás conmigo. Pensamos juntos. Y cada decisión de diseño tiene un porqué.</p><a className="text-link" href="#contacto">Conozcamos tu idea <ArrowUpRight size={18} /></a></Reveal></section>
 
-                <div className="rounded-[20px] border border-cy-line bg-cy-panel p-6 flex flex-col transition-all hover:border-cy-lime/50">
-                    <div className="flex items-center justify-between mb-4">
-                        <span className="text-3xl">🚘</span>
-                        <span className="text-[10px] font-mono text-cy-text-sec uppercase tracking-wider bg-cy-panel-light px-2 py-1 rounded">Automotriz</span>
-                    </div>
-                    <h3 className="text-lg font-bold text-cy-white mb-2">Automotora Demo</h3>
-                    <p className="text-sm text-cy-text-sec mb-6 flex-grow">Modernizamos la presentación de vehículos con diseño premium, catálogo interactivo y experiencia fluida.</p>
-                    <a id="demo-link-7" href="https://automotoras-landing.vercel.app/" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-cy-lime font-bold text-xs hover:underline mt-auto">
-                        Ver demo interactivo <DraftIcon name="lucide:arrow-right" />
-                    </a>
-<a id="demo-inquiry-7" href={createWhatsAppLink(siteConfig.whatsappNumber, "Hola ClientesYa, vi la demo Automotora Demo y quiero una web a medida para mi negocio. ¿Podemos hablar?")} target="_blank" rel="noopener noreferrer" className="mt-4 inline-flex items-center gap-2 text-sm font-bold text-cy-white hover:text-cy-lime">Quiero una así <DraftIcon name="lucide:message-circle" width="15" /></a>
-                </div>
+      <section id="faq" className="faq-section section-space page-shell"><div><p className="eyebrow">07 / ANTES DE EMPEZAR</p><h2>Capaz te estás<br /><span className="muted-heading">preguntando.</span></h2></div><div className="faq-list">{questions.map(([question, answer]) => <details key={question}><summary>{question}<Plus size={18} /></summary><p>{answer}</p></details>)}</div></section>
 
-                <div className="rounded-[20px] border border-cy-line bg-cy-panel p-6 flex flex-col transition-all hover:border-cy-lime/50">
-                    <div className="flex items-center justify-between mb-4">
-                        <span className="text-3xl">🛋️</span>
-                        <span className="text-[10px] font-mono text-cy-text-sec uppercase tracking-wider bg-cy-panel-light px-2 py-1 rounded">Hogar</span>
-                    </div>
-                    <h3 className="text-lg font-bold text-cy-white mb-2">Muebles/Sillones Demo</h3>
-                    <p className="text-sm text-cy-text-sec mb-6 flex-grow">Catálogo de muebles y sillones presentado con calidez, mostrando diseños y transmitiendo comodidad.</p>
-                    <a id="demo-link-6" href="https://sillones-landing.vercel.app/" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-cy-lime font-bold text-xs hover:underline mt-auto">
-                        Ver demo interactivo <DraftIcon name="lucide:arrow-right" />
-                    </a>
-<a id="demo-inquiry-6" href={createWhatsAppLink(siteConfig.whatsappNumber, "Hola ClientesYa, vi la demo Muebles/Sillones Demo y quiero una web a medida para mi negocio. ¿Podemos hablar?")} target="_blank" rel="noopener noreferrer" className="mt-4 inline-flex items-center gap-2 text-sm font-bold text-cy-white hover:text-cy-lime">Quiero una así <DraftIcon name="lucide:message-circle" width="15" /></a>
-                </div>
-
-                <div className="rounded-[20px] border border-cy-line bg-cy-panel p-6 flex flex-col transition-all hover:border-cy-lime/50">
-                    <div className="flex items-center justify-between mb-4">
-                        <span className="text-3xl">📚</span>
-                        <span className="text-[10px] font-mono text-cy-text-sec uppercase tracking-wider bg-cy-panel-light px-2 py-1 rounded">Educación</span>
-                    </div>
-                    <h3 className="text-lg font-bold text-cy-white mb-2">Academia Demo</h3>
-                    <p className="text-sm text-cy-text-sec mb-6 flex-grow">Cursos claros y organizados para todos los niveles, con información de fácil acceso y consultas directas.</p>
-                    <a id="demo-link-5" href="https://academia-demo-uy.vercel.app/" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-cy-lime font-bold text-xs hover:underline mt-auto">
-                        Ver demo interactivo <DraftIcon name="lucide:arrow-right" />
-                    </a>
-<a id="demo-inquiry-5" href={createWhatsAppLink(siteConfig.whatsappNumber, "Hola ClientesYa, vi la demo Academia Demo y quiero una web a medida para mi negocio. ¿Podemos hablar?")} target="_blank" rel="noopener noreferrer" className="mt-4 inline-flex items-center gap-2 text-sm font-bold text-cy-white hover:text-cy-lime">Quiero una así <DraftIcon name="lucide:message-circle" width="15" /></a>
-                </div>
-
-                <div className="rounded-[20px] border border-cy-line bg-cy-panel p-6 flex flex-col transition-all hover:border-cy-lime/50">
-                    <div className="flex items-center justify-between mb-4">
-                        <span className="text-3xl">🧠</span>
-                        <span className="text-[10px] font-mono text-cy-text-sec uppercase tracking-wider bg-cy-panel-light px-2 py-1 rounded">Salud</span>
-                    </div>
-                    <h3 className="text-lg font-bold text-cy-white mb-2">Psicología Demo</h3>
-                    <p className="text-sm text-cy-text-sec mb-6 flex-grow">Servicios psicológicos presentados de forma cálida y profesional, facilitando la primera consulta.</p>
-                    <a id="demo-link-4" href="https://psicologa-demo-five.vercel.app/" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-cy-lime font-bold text-xs hover:underline mt-auto">
-                        Ver demo interactivo <DraftIcon name="lucide:arrow-right" />
-                    </a>
-<a id="demo-inquiry-4" href={createWhatsAppLink(siteConfig.whatsappNumber, "Hola ClientesYa, vi la demo Psicología Demo y quiero una web a medida para mi negocio. ¿Podemos hablar?")} target="_blank" rel="noopener noreferrer" className="mt-4 inline-flex items-center gap-2 text-sm font-bold text-cy-white hover:text-cy-lime">Quiero una así <DraftIcon name="lucide:message-circle" width="15" /></a>
-                </div>
-
-                <div className="rounded-[20px] border border-cy-line bg-cy-panel p-6 flex flex-col transition-all hover:border-cy-lime/50">
-                    <div className="flex items-center justify-between mb-4">
-                        <span className="text-3xl">🔧</span>
-                        <span className="text-[10px] font-mono text-cy-text-sec uppercase tracking-wider bg-cy-panel-light px-2 py-1 rounded">Comercio</span>
-                    </div>
-                    <h3 className="text-lg font-bold text-cy-white mb-2">Ferretería Demo</h3>
-                    <p className="text-sm text-cy-text-sec mb-6 flex-grow">Catálogo de herramientas y productos organizados por categorías, con contacto directo por WhatsApp.</p>
-                    <a id="demo-link-3" href="https://ferreteria-landing-one.vercel.app/" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-cy-lime font-bold text-xs hover:underline mt-auto">
-                        Ver demo interactivo <DraftIcon name="lucide:arrow-right" />
-                    </a>
-<a id="demo-inquiry-3" href={createWhatsAppLink(siteConfig.whatsappNumber, "Hola ClientesYa, vi la demo Ferretería Demo y quiero una web a medida para mi negocio. ¿Podemos hablar?")} target="_blank" rel="noopener noreferrer" className="mt-4 inline-flex items-center gap-2 text-sm font-bold text-cy-white hover:text-cy-lime">Quiero una así <DraftIcon name="lucide:message-circle" width="15" /></a>
-                </div>
-
-                <div className="rounded-[20px] border border-cy-line bg-cy-panel p-6 flex flex-col transition-all hover:border-cy-lime/50">
-                    <div className="flex items-center justify-between mb-4">
-                        <span className="text-3xl">🚗</span>
-                        <span className="text-[10px] font-mono text-cy-text-sec uppercase tracking-wider bg-cy-panel-light px-2 py-1 rounded">Automotriz</span>
-                    </div>
-                    <h3 className="text-lg font-bold text-cy-white mb-2">RentaCar Demo</h3>
-                    <p className="text-sm text-cy-text-sec mb-6 flex-grow">Alquiler de vehículos con catálogo moderno, búsqueda intuitiva y contacto inmediato para reservas.</p>
-                    <a id="demo-link-2" href="https://renta-car-landing.vercel.app/" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-cy-lime font-bold text-xs hover:underline mt-auto">
-                        Ver demo interactivo <DraftIcon name="lucide:arrow-right" />
-                    </a>
-<a id="demo-inquiry-2" href={createWhatsAppLink(siteConfig.whatsappNumber, "Hola ClientesYa, vi la demo RentaCar Demo y quiero una web a medida para mi negocio. ¿Podemos hablar?")} target="_blank" rel="noopener noreferrer" className="mt-4 inline-flex items-center gap-2 text-sm font-bold text-cy-white hover:text-cy-lime">Quiero una así <DraftIcon name="lucide:message-circle" width="15" /></a>
-                </div>
-
-                <div className="rounded-[20px] border border-cy-line bg-cy-panel p-6 flex flex-col transition-all hover:border-cy-lime/50">
-                    <div className="flex items-center justify-between mb-4">
-                        <span className="text-3xl">🦷</span>
-                        <span className="text-[10px] font-mono text-cy-text-sec uppercase tracking-wider bg-cy-panel-light px-2 py-1 rounded">Salud</span>
-                    </div>
-                    <h3 className="text-lg font-bold text-cy-white mb-2">Odontología Demo</h3>
-                    <p className="text-sm text-cy-text-sec mb-6 flex-grow">Servicios dentales presentados de forma profesional, con agenda clara y consultas organizadas.</p>
-                    <a id="demo-link-1" href="https://dcoop.vercel.app/" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-cy-lime font-bold text-xs hover:underline mt-auto">
-                        Ver demo interactivo <DraftIcon name="lucide:arrow-right" />
-                    </a>
-<a id="demo-inquiry-1" href={createWhatsAppLink(siteConfig.whatsappNumber, "Hola ClientesYa, vi la demo Odontología Demo y quiero una web a medida para mi negocio. ¿Podemos hablar?")} target="_blank" rel="noopener noreferrer" className="mt-4 inline-flex items-center gap-2 text-sm font-bold text-cy-white hover:text-cy-lime">Quiero una así <DraftIcon name="lucide:message-circle" width="15" /></a>
-                </div>
-            </div>
-        </div>
-      <div className="mx-auto max-w-[1280px] px-5 sm:px-10 pt-8"><a className="text-cy-lime font-bold" href="#contacto">¿Tu rubro es diferente? Contanos tu idea <span aria-hidden="true">↗</span></a></div></section>
-
-
-      <section id="menu-digital" className="py-24 bg-cy-panel-light/30 border-t border-cy-line relative">
-        <div className="mx-auto max-w-[1280px] px-5 sm:px-10">
-            <div className="text-center max-w-3xl mx-auto mb-16">
-                <h2 className="text-[36px] sm:text-[48px] font-extrabold tracking-tight text-cy-white mb-4">Menú digital QR para restaurantes</h2>
-                <p className="text-lg text-cy-text-sec">
-                    Ofrecé a tus comensales un menú visual y fácil de leer escaneando un QR. Sin aplicaciones molestas.
-                </p>
-            </div>
-            <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-                <div className="rounded-[24px] border border-cy-line bg-cy-panel p-8 text-center">
-                    <h3 className="text-2xl font-bold text-cy-white mb-4">Gestión a Demanda</h3>
-                    <p className="text-cy-text-sec mb-6">Nos encargamos de las actualizaciones. Nos enviás los cambios y mantenemos tu carta al día.</p>
-                    <div className="text-xl font-mono text-cy-lime mb-6">A cotizar</div>
-                    <a id="cta-menu-demanda" href={createWhatsAppLink(siteConfig.whatsappNumber, "Presupuesto Menú Gestión Demanda")} target="_blank" rel="noopener noreferrer" className="inline-block w-full rounded-[12px] border border-cy-line py-3 font-bold hover:bg-cy-panel-light transition-colors">Pedí tu presupuesto</a>
-                </div>
-                <div className="rounded-[24px] border border-cy-lime bg-cy-panel p-8 text-center relative">
-                    <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-cy-lime text-cy-dark px-3 py-1 rounded-full text-xs font-bold">Recomendado</div>
-                    <h3 className="text-2xl font-bold text-cy-white mb-4">Panel Autogestionable</h3>
-                    <p className="text-cy-text-sec mb-6">Control total sobre tus platos y precios desde un panel de control fácil de usar cuando lo necesites.</p>
-                    <div className="text-xl font-mono text-cy-lime mb-6">A cotizar</div>
-                    <a id="cta-menu-auto" href={createWhatsAppLink(siteConfig.whatsappNumber, "Presupuesto Menú Autogestionable")} target="_blank" rel="noopener noreferrer" className="inline-block w-full rounded-[12px] bg-cy-lime text-cy-dark py-3 font-bold hover:brightness-95 transition-colors">Pedí tu presupuesto</a>
-                </div>
-            </div>
-        </div>
-      <MenuDemos /></section>
-
-
-      <section id="planes" className="py-24 bg-cy-dark border-t border-cy-line relative">
-        <div className="mx-auto max-w-[1280px] px-5 sm:px-10">
-            <div className="text-center max-w-2xl mx-auto mb-16">
-                <h2 className="text-[42px] font-extrabold tracking-tight text-cy-white mb-4">Inversión clara.</h2>
-                <p className="text-lg text-cy-text-sec">Páginas web para empresas uruguayas sin sorpresas ocultas.</p>
-            </div>
-            <div className="max-w-3xl mx-auto rounded-[24px] border border-cy-line bg-cy-panel p-8 md:p-12">
-                <div className="flex flex-col md:flex-row justify-between items-start md:items-center border-b border-cy-line pb-8 mb-8">
-                    <div>
-                        <h3 className="text-3xl font-bold text-cy-white mb-2">Landing a medida</h3>
-                        <p className="text-cy-text-sec">Diseño y desarrollo inicial.</p>
-                    </div>
-                    <div className="mt-4 md:mt-0 text-right">
-                        <div className="text-[42px] font-extrabold text-cy-lime leading-none">USD 149</div>
-                        <div className="text-sm text-cy-text-sec mt-1">desde · pago inicial</div>
-                    </div>
-                </div>
-                <div className="grid md:grid-cols-2 gap-8 mb-8">
-                    <ul className="space-y-4">
-                        <li className="flex items-start gap-3 text-cy-text-sec">
-                            <DraftIcon name="lucide:check" className="text-cy-lime mt-1" />
-                            <span>Mantenimiento y hosting: <strong>USD 15/mes</strong></span>
-                        </li>
-                        <li className="flex items-start gap-3 text-cy-text-sec">
-                            <DraftIcon name="lucide:check" className="text-cy-lime mt-1" />
-                            <span>Dominio por un año incluido</span>
-                        </li>
-                    </ul>
-                    <ul className="space-y-4">
-                        <li className="flex items-start gap-3 text-cy-text-sec">
-                            <DraftIcon name="lucide:info" className="text-cy-text-sec mt-1" />
-                            <span className="text-sm">Renovación de dominio sujeta a cotización anual.</span>
-                        </li>
-                        <li className="flex items-start gap-3 text-cy-text-sec">
-                            <DraftIcon name="lucide:info" className="text-cy-text-sec mt-1" />
-                            <span className="text-sm">Impuestos no incluidos. Alcance de mantenimiento a acordar.</span>
-                        </li>
-                    </ul>
-                </div>
-                <div className="text-center">
-                    <a id="pricing-landing-whatsapp" href={createWhatsAppLink(siteConfig.whatsappNumber, 'Hola ClientesYa, me interesa la landing desde USD 149 y el mantenimiento de USD 15 por mes. Quiero contarles sobre mi negocio.')} target="_blank" rel="noopener noreferrer" className="primary-button mb-6">Empezar mi web <DraftIcon name="lucide:arrow-up-right" width="18" /></a>
-                    <p className="text-sm text-cy-text-sec mb-4">¿Integraciones de pagos o funciones personalizadas?</p>
-                    <a id="btn-pricing-custom" href={createWhatsAppLink(siteConfig.whatsappNumber, "Quiero una cotización a medida")} target="_blank" rel="noopener noreferrer" className="inline-block px-8 py-3 rounded-[12px] border border-cy-line font-bold text-cy-white hover:bg-cy-panel-light transition-colors">
-                        Solicitar cotización personalizada
-                    </a>
-                </div>
-            </div>
-        </div>
-      </section>
-
-
-      <section id="proceso" className="py-24 bg-cy-panel-light/30 border-t border-cy-line relative">
-        <div className="mx-auto max-w-[1280px] px-5 sm:px-10">
-            <div className="mb-16 text-center">
-                <h2 className="text-[36px] sm:text-[48px] font-extrabold tracking-tight text-cy-white">Cómo trabajamos</h2>
-            </div>
-            <div className="grid md:grid-cols-3 gap-8 relative">
-                <div className="hidden md:block absolute top-8 left-1/6 right-1/6 h-px bg-cy-line -z-10"></div>
-                <div className="bg-cy-panel border border-cy-line rounded-[20px] p-6 text-center">
-                    <div className="w-16 h-16 bg-cy-dark border border-cy-line rounded-full flex items-center justify-center text-2xl font-bold text-cy-lime mx-auto mb-6">1</div>
-                    <h3 className="text-xl font-bold text-cy-white mb-3">Contacto inicial</h3>
-                    <p className="text-cy-text-sec text-sm">Nos contás tu idea por WhatsApp o formulario y definimos el enfoque para tu negocio uruguayo.</p>
-                </div>
-                <div className="bg-cy-panel border border-cy-line rounded-[20px] p-6 text-center">
-                    <div className="w-16 h-16 bg-cy-dark border border-cy-line rounded-full flex items-center justify-center text-2xl font-bold text-cy-lime mx-auto mb-6">2</div>
-                    <h3 className="text-xl font-bold text-cy-white mb-3">Diseño y feedback</h3>
-                    <p className="text-cy-text-sec text-sm">Armamos el boceto de tu sitio web a medida y lo ajustamos basándonos en tus comentarios.</p>
-                </div>
-                <div className="bg-cy-panel border border-cy-line rounded-[20px] p-6 text-center">
-                    <div className="w-16 h-16 bg-cy-dark border border-cy-line rounded-full flex items-center justify-center text-2xl font-bold text-cy-lime mx-auto mb-6">3</div>
-                    <h3 className="text-xl font-bold text-cy-white mb-3">Lanzamiento</h3>
-                    <p className="text-cy-text-sec text-sm">Publicamos tu sitio para que empieces a recibir consultas y ventas directamente en tu celular.</p>
-                </div>
-            </div>
-        </div>
-      </section>
-
-
-      <section id="nosotros" className="py-24 bg-cy-dark border-t border-cy-line relative">
-        <div className="mx-auto max-w-[1280px] px-5 sm:px-10">
-            <div className="max-w-3xl mx-auto text-center">
-                <div className="inline-block p-4 rounded-full bg-cy-panel border border-cy-line mb-6">
-                    <DraftIcon name="lucide:user" className="text-3xl text-cy-lime" />
-                </div>
-                <h2 className="text-2xl font-bold text-cy-white mb-6">Detrás de ClientesYa</h2>
-                <p className="text-lg text-cy-text-sec leading-relaxed">
-                    Soy Tadeo, desarrollador enfocado en crear herramientas que resuelvan problemas reales de los negocios. Mi objetivo es que las empresas uruguayas tengan presencia digital profesional, rápida y enfocada en lo que importa: conseguir clientes y facilitar ventas sin complicaciones técnicas.
-                </p>
-            </div>
-        </div>
-      </section>
-
-
-      <section id="faq" className="py-24 bg-cy-panel-light/30 border-t border-cy-line relative">
-        <div className="mx-auto max-w-[800px] px-5 sm:px-10">
-            <div className="text-center mb-16">
-                <h2 className="text-[36px] sm:text-[48px] font-extrabold tracking-tight text-cy-white">Preguntas Frecuentes</h2>
-            </div>
-            <div className="space-y-4">
-                <details className="group rounded-[16px] border border-cy-line bg-cy-panel p-6 [&_summary::-webkit-details-marker]:hidden">
-                    <summary className="flex cursor-pointer items-center justify-between gap-1.5">
-                        <h2 className="text-lg font-bold text-cy-white">¿Cuánto demora en estar lista mi web?</h2>
-                        <span className="shrink-0 rounded-full bg-cy-panel-light p-1.5 text-cy-white sm:p-3">
-                            <DraftIcon name="lucide:plus" className="group-open:-rotate-45 transition-transform" />
-                        </span>
-                    </summary>
-                    <p className="mt-4 leading-relaxed text-cy-text-sec">
-                        Acordamos el plazo en tu presupuesto según el alcance del proyecto y los materiales disponibles. Antes de empezar vas a saber qué necesitamos y cuándo estará lista.
-                    </p>
-                </details>
-                <details className="group rounded-[16px] border border-cy-line bg-cy-panel p-6 [&_summary::-webkit-details-marker]:hidden">
-                    <summary className="flex cursor-pointer items-center justify-between gap-1.5">
-                        <h2 className="text-lg font-bold text-cy-white">¿Qué necesito para empezar?</h2>
-                        <span className="shrink-0 rounded-full bg-cy-panel-light p-1.5 text-cy-white sm:p-3">
-                            <DraftIcon name="lucide:plus" className="group-open:-rotate-45 transition-transform" />
-                        </span>
-                    </summary>
-                    <p className="mt-4 leading-relaxed text-cy-text-sec">
-                        Necesitamos el logo de tu empresa, textos básicos sobre tus servicios, fotos de buena calidad e información de contacto (como el número de WhatsApp al que querés recibir consultas).
-                    </p>
-                </details>
-                <details className="group rounded-[16px] border border-cy-line bg-cy-panel p-6 [&_summary::-webkit-details-marker]:hidden">
-                    <summary className="flex cursor-pointer items-center justify-between gap-1.5">
-                        <h2 className="text-lg font-bold text-cy-white">¿El dominio está incluido?</h2>
-                        <span className="shrink-0 rounded-full bg-cy-panel-light p-1.5 text-cy-white sm:p-3">
-                            <DraftIcon name="lucide:plus" className="group-open:-rotate-45 transition-transform" />
-                        </span>
-                    </summary>
-                    <p className="mt-4 leading-relaxed text-cy-text-sec">
-                        Sí, el primer año del dominio acordado está incluido en el plan inicial. La renovación se cotiza y abona anualmente de forma separada.
-                    </p>
-                </details>
-                <details className="group rounded-[16px] border border-cy-line bg-cy-panel p-6 [&_summary::-webkit-details-marker]:hidden">
-                    <summary className="flex cursor-pointer items-center justify-between gap-1.5">
-                        <h2 className="text-lg font-bold text-cy-white">¿Puedo modificar la web después?</h2>
-                        <span className="shrink-0 rounded-full bg-cy-panel-light p-1.5 text-cy-white sm:p-3">
-                            <DraftIcon name="lucide:plus" className="group-open:-rotate-45 transition-transform" />
-                        </span>
-                    </summary>
-                    <p className="mt-4 leading-relaxed text-cy-text-sec">
-                        Sí. Definimos en tu presupuesto qué cambios incluye el mantenimiento. Las nuevas secciones, funciones o integraciones se cotizan por separado.
-                    </p>
-                </details>
-                <details className="group rounded-[16px] border border-cy-line bg-cy-panel p-6 [&_summary::-webkit-details-marker]:hidden">
-                    <summary className="flex cursor-pointer items-center justify-between gap-1.5">
-                        <h2 className="text-lg font-bold text-cy-white">¿Las consultas van a mi WhatsApp personal?</h2>
-                        <span className="shrink-0 rounded-full bg-cy-panel-light p-1.5 text-cy-white sm:p-3">
-                            <DraftIcon name="lucide:plus" className="group-open:-rotate-45 transition-transform" />
-                        </span>
-                    </summary>
-                    <p className="mt-4 leading-relaxed text-cy-text-sec">
-                        Podemos vincular el botón al número que prefieras. Recomendamos usar un número de WhatsApp Business para separar la comunicación personal de la comercial.
-                    </p>
-                </details>
-                <details className="group rounded-[16px] border border-cy-line bg-cy-panel p-6 [&_summary::-webkit-details-marker]:hidden">
-                    <summary className="flex cursor-pointer items-center justify-between gap-1.5">
-                        <h2 className="text-lg font-bold text-cy-white">¿Hacen tiendas con carrito y pago online?</h2>
-                        <span className="shrink-0 rounded-full bg-cy-panel-light p-1.5 text-cy-white sm:p-3">
-                            <DraftIcon name="lucide:plus" className="group-open:-rotate-45 transition-transform" />
-                        </span>
-                    </summary>
-                    <p className="mt-4 leading-relaxed text-cy-text-sec">
-                        Nuestro enfoque principal son catálogos y landings que dirigen a WhatsApp para cerrar la venta directamente. Integraciones de pago completas se realizan únicamente bajo presupuesto personalizado.
-                    </p>
-                </details>
-            </div>
-        </div>
-      </section>
-
-
-      <section id="contacto" className="py-24 bg-cy-dark border-t border-cy-line relative">
-        <div className="mx-auto max-w-[1280px] px-5 sm:px-10">
-            <div className="grid lg:grid-cols-2 gap-12">
-                <div>
-                    <h2 className="text-[42px] font-extrabold tracking-tight text-cy-white mb-4">Empecemos hoy.</h2>
-                    <p className="text-lg text-cy-text-sec mb-8">
-                        Escribinos directo por WhatsApp o contanos tu proyecto en el formulario para preparar tu consulta personalizada por WhatsApp.
-                    </p>
-                    <div className="space-y-4">
-                        <a id="contact-direct-wa" href={createWhatsAppLink(siteConfig.whatsappNumber, "Hola ClientesYa, quiero conocer las opciones para mi negocio en Uruguay.")} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-3 text-lg font-bold text-cy-white hover:text-cy-lime transition-colors">
-                            <div className="w-12 h-12 rounded-full bg-cy-panel border border-cy-line flex items-center justify-center">
-                                <DraftIcon name="lucide:message-circle" className="text-xl" />
-                            </div>
-                            +598 94 984 842
-                        </a>
-                        <a id="contact-direct-email" href="mailto:clientesya.uy@gmail.com" className="flex items-center gap-3 text-lg font-bold text-cy-white hover:text-cy-lime transition-colors">
-                            <div className="w-12 h-12 rounded-full bg-cy-panel border border-cy-line flex items-center justify-center">
-                                <DraftIcon name="lucide:mail" className="text-xl" />
-                            </div>
-                            clientesya.uy@gmail.com
-                        </a>
-                    </div>
-                </div>
-                <div className="bg-cy-panel border border-cy-line rounded-[24px] p-8">
-                    <ContactForm />
-                </div>
-            </div>
-        </div>
-      </section>
-
+      <section id="contacto" className="contact-section section-space"><div className="page-shell contact-grid"><div><p className="eyebrow"><span className="status-dot" /> EMPECEMOS CON UNA CONVERSACIÓN</p><h2>Tu próxima<br />gran idea.<br /><em>Hagámosla.</em></h2><p>No necesitás tener todo resuelto.<br />Con una idea alcanza para empezar a hablar.</p><a id="contact-direct-wa" className="primary-button" href={wa(projectMessage)} target="_blank" rel="noopener noreferrer"><MessageCircle size={18} /> Hablemos por WhatsApp <ArrowUpRight size={18} /></a><a className="contact-email" href={`mailto:${siteConfig.contactEmail}`}>{siteConfig.contactEmail} <ArrowUpRight size={15} /></a></div><div className="contact-form-panel"><ContactForm /></div></div></section>
     </main>
-
-
-    <footer className="py-12 border-t border-cy-line bg-cy-panel">
-        <div className="mx-auto max-w-[1280px] px-5 sm:px-10 flex flex-col md:flex-row items-center justify-between gap-6">
-            <div className="flex items-center gap-3">
-                <img src="/clientesya-logo.webp" alt="ClientesYa Logo" className="h-8 w-8 object-contain" />
-                <span className="font-extrabold text-cy-white tracking-tight">ClientesYa</span>
-            </div>
-            <div className="text-sm text-cy-text-sec text-center md:text-right">
-                © 2026 ClientesYa. Todos los derechos reservados.<br />
-                Webs a medida para empresas uruguayas.
-            </div>
-        </div>
-        <div className="mx-auto max-w-[1280px] px-5 sm:px-10 mt-6 flex flex-wrap justify-center md:justify-start gap-5 text-sm text-cy-text-sec">
-          {siteConfig.socialLinks.map(social => <a key={social.name} href={social.url} target="_blank" rel="noopener noreferrer" className="hover:text-cy-lime">{social.name} ↗</a>)}
-        </div>
-    <PrivacyNotice /></footer>
-</div>
-<ConsentControls />
-<a href={createWhatsAppLink(siteConfig.whatsappNumber, siteConfig.defaultWhatsAppMessage)} id="floating-whatsapp" aria-label="Consultar por WhatsApp" className="floating-whatsapp" onClick={handleTrackedClick}><DraftIcon name="lucide:message-circle" width="25" /><span>Hablemos</span></a>
-</>
+    <footer className="site-footer"><div className="page-shell footer-top"><a className="brand" href="#inicio"><span className="brand-symbol" />ClientesYa<span className="brand-period">.</span></a><p>Ideas propias. Webs a medida.<br />Hecho en Uruguay.</p><div>{siteConfig.socialLinks.map(social => <a key={social.name} href={social.url} target="_blank" rel="noopener noreferrer">{social.name}<ArrowUpRight size={14} /></a>)}</div><a href="#inicio" className="round-link" aria-label="Volver al inicio"><ArrowUpRight size={20} /></a></div><PrivacyNotice /><div className="page-shell footer-bottom"><span>© 2026 ClientesYa.</span><span>DISEÑO WEB EN URUGUAY</span></div></footer>
+    <a href={wa(projectMessage)} id="floating-whatsapp" aria-label="Consultar por WhatsApp" className="floating-whatsapp"><MessageCircle size={23} /><span>Hablemos</span></a><ConsentControls />
+  </div></MotionConfig>
 }

@@ -9,7 +9,7 @@ export const siteConfig = {
     heroPrimaryCta: 'Quiero mi landing',
     heroSecondaryCta: 'Ver demos',
     whatsappNumber: import.meta.env.VITE_PUBLIC_WHATSAPP_NUMBER || '59894984842',
-    defaultWhatsAppMessage: 'Hola ClientesYa, quiero una landing para mi negocio.',
+    defaultWhatsAppMessage: 'Hola ClientesYa, quiero contarles sobre mi proyecto y pedir un presupuesto a medida.',
     demoWhatsAppMessage: 'Hola ClientesYa, quiero una landing inspirada en sus demos.',
     ctaLabel: 'Hablar por WhatsApp',
     sectionTag: 'Diseño enfocado en ventas',

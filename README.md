@@ -1,6 +1,6 @@
 # ClientesYa
 
-Landing React + Vite para empresas uruguayas: diseño a medida, catálogos con WhatsApp y menús digitales QR. Estética negro y verde lima basada en la propuesta aprobada en Superdesign.
+Landing React + Vite para empresas uruguayas: diseño a medida, catálogos con WhatsApp y menús digitales QR. Identidad negro y lima con tema claro marfil, selector Sistema/Claro/Oscuro y composiciones HTML animadas con Framer Motion.
 
 ## Desarrollo
 
@@ -33,7 +33,10 @@ Seguí [la configuración de Google y Vercel](docs/google-setup.md). Los límite
 
 ## Contenido y marca
 
-- App principal: `src/App.jsx`; estilos: `src/index.css` y `tailwind.config.js`.
+- App principal: `src/App.jsx`; estilos semánticos para ambos temas: `src/index.css` y `tailwind.config.js`.
+- Escenas HTML: `src/components/ShowcaseScenes.jsx`. Hero por capas y capítulo de ZonaMuebles ligado al scroll; móvil con flujo vertical y soporte de movimiento reducido.
+- Logo vectorial trazado desde `logo-nuevo.png`: `public/clientesya-symbol.svg`. Fotos de los proyectos originales optimizadas en `public/showcase/`.
+- Selector de tema: `src/components/ThemeSwitch.jsx`. Sistema por defecto y elección persistida en `cy-theme`; funciona durante la sesión si el navegador bloquea el almacenamiento.
 - WhatsApp y redes: `src/config/siteConfig.js`.
 - Demos de menús: `src/data/menuDemos.js`. Canaritas, Renis Burger y Martinos se presentan como muestras, no como clientes.
 - Formulario: `src/components/ContactForm.jsx`; validación compartida: `src/utils/inquiry.js`.

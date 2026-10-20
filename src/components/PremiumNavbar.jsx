@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react'
 import { Menu, X, MessageCircle } from 'lucide-react'
 import { siteConfig } from '../config/siteConfig'
 import { createWhatsAppLink } from '../utils/whatsapp'
+import ThemeSwitch from './ThemeSwitch'
 
 const links = [['Servicios', '#servicios'], ['Proyectos', '#proyectos'], ['Menús QR', '#menu-digital'], ['Planes', '#planes'], ['Contacto', '#contacto']]
 export default function PremiumNavbar() {
@@ -16,8 +17,9 @@ export default function PremiumNavbar() {
   }, [open])
   return <header className="site-header">
     <div className="nav-shell">
-      <a href="#inicio" className="inline-flex items-center gap-3" aria-label="ClientesYa, inicio" onClick={() => setOpen(false)}><img src="/clientesya-logo.webp" width="36" height="36" alt="ClientesYa" /><span className="font-extrabold tracking-tight">ClientesYa</span></a>
+      <a href="#inicio" className="brand" aria-label="ClientesYa, inicio" onClick={() => setOpen(false)}><span className="brand-symbol" aria-hidden="true" /><span>ClientesYa<span className="brand-period">.</span></span></a>
       <nav className="desktop-nav" aria-label="Navegación principal">{links.map(([label, href]) => <a key={href} href={href}>{label}</a>)}</nav>
+      <ThemeSwitch />
       <a id="nav-whatsapp" href={createWhatsAppLink(siteConfig.whatsappNumber, siteConfig.defaultWhatsAppMessage)} target="_blank" rel="noopener noreferrer" className="nav-cta"><MessageCircle size={18} />Hablemos</a>
       <button ref={toggle} className="menu-toggle" type="button" aria-expanded={open} aria-controls="mobile-navigation" aria-label={open ? 'Cerrar menú' : 'Abrir menú'} onClick={() => setOpen(!open)}>{open ? <X /> : <Menu />}</button>
     </div>

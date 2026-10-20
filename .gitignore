@@ -32,3 +32,5 @@ dist-ssr
 # Temporary design exports
 .superdesign/tmp/
 .ssr/
+.playwright-cli/
+output/playwright/
